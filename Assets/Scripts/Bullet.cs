@@ -5,8 +5,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int bulletDamage;
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //collision.gameObject.GetComponent;
+        Debug.Log("Dano");
+        collision.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
         Destroy(gameObject);
     }
 }

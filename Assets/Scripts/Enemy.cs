@@ -13,12 +13,11 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
-        if (_currentHealth==0)
-            Destroy(gameObject);
-        
     }
-    void OnTriggerEnter2D(Collider2D col)
+    public void TakeDamage(int amount)
     {
-        _currentHealth = 0;
+        _currentHealth -= amount;
+        if (_currentHealth<=0)
+            Destroy(gameObject);
     }
 }
