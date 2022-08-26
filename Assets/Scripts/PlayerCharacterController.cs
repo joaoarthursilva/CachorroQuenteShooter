@@ -41,13 +41,6 @@ public class PlayerCharacterController : MonoBehaviour
     [SerializeField] private Vector3 _groundRaycastOffset;
     private bool _onGround;
 
-    [Header("Corner Correction Variables")] [SerializeField]
-    private float _topRaycastLength;
-
-    [SerializeField] private Vector3 _edgeRaycastOffset;
-    [SerializeField] private Vector3 _innerRaycastOffset;
-    private bool _canCornerCorrect;
-
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -86,8 +79,6 @@ public class PlayerCharacterController : MonoBehaviour
             FallMultiplier();
             _coyoteTimeCounter -= Time.deltaTime;
         }
-
-        if (_canCornerCorrect) CornerCorrect(_rb.velocity.y);
     }
 
 
@@ -145,35 +136,6 @@ public class PlayerCharacterController : MonoBehaviour
         _rb.drag = _airLinearDrag;
     }
 
-    void CornerCorrect(float velocityY)
-    {
-        //Push player to the right
-        RaycastHit2D _hit = Physics2D.Raycast(_position - _innerRaycastOffset + Vector3.up * _topRaycastLength,
-            Vector3.left, _topRaycastLength, _groundLayer);
-        if (_hit.collider != null)
-        {
-            float _newPos = Vector3.Distance(
-                new Vector3(_hit.point.x, _position.y, 0f) + Vector3.up * _topRaycastLength,
-                _position - _edgeRaycastOffset + Vector3.up * _topRaycastLength);
-            _position = new Vector3(_position.x + _newPos, _position.y, _position.z);
-            _rb.velocity = new Vector2(_rb.velocity.x, velocityY);
-            return;
-        }
-
-        //Push player to the left
-        _hit = Physics2D.Raycast(_position + _innerRaycastOffset + Vector3.up * _topRaycastLength,
-            Vector3.right, _topRaycastLength, _groundLayer);
-        if (_hit.collider != null)
-        {
-            float _newPos = Vector3.Distance(
-                new Vector3(_hit.point.x, _position.y, 0f) + Vector3.up * _topRaycastLength,
-                _position + _edgeRaycastOffset + Vector3.up * _topRaycastLength);
-            _position =
-                new Vector3(_position.x - _newPos, _position.y, _position.z);
-            _rb.velocity = new Vector2(_rb.velocity.x, velocityY);
-        }
-    }
-
     private void CheckCollisions()
     {
         //Ground
@@ -181,14 +143,6 @@ public class PlayerCharacterController : MonoBehaviour
                         _groundLayer) ||
                     Physics2D.Raycast(_position - _groundRaycastOffset, Vector2.down, _groundRaycastLength,
                         _groundLayer);
-
-        //Corner
-        _canCornerCorrect =
-            Physics2D.Raycast(_position + _edgeRaycastOffset, Vector2.up, _topRaycastLength, _groundLayer) &&
-            !Physics2D.Raycast(_position + _innerRaycastOffset, Vector2.up, _topRaycastLength,
-                _groundLayer) ||
-            Physics2D.Raycast(_position - _edgeRaycastOffset, Vector2.up, _topRaycastLength, _groundLayer) &&
-            !Physics2D.Raycast(_position - _innerRaycastOffset, Vector2.up, _topRaycastLength, _groundLayer);
     }
 
     private void OnDrawGizmos()
@@ -200,23 +154,5 @@ public class PlayerCharacterController : MonoBehaviour
             _position + _groundRaycastOffset + Vector3.down * _groundRaycastLength);
         Gizmos.DrawLine(_position - _groundRaycastOffset,
             _position - _groundRaycastOffset + Vector3.down * _groundRaycastLength);
-
-        //Corner Check
-        Gizmos.DrawLine(_position + _edgeRaycastOffset,
-            _position + _edgeRaycastOffset + Vector3.up * _topRaycastLength);
-        Gizmos.DrawLine(_position - _edgeRaycastOffset,
-            _position - _edgeRaycastOffset + Vector3.up * _topRaycastLength);
-        Gizmos.DrawLine(_position + _innerRaycastOffset,
-            _position + _innerRaycastOffset + Vector3.up * _topRaycastLength);
-        Gizmos.DrawLine(_position - _innerRaycastOffset,
-            _position - _innerRaycastOffset + Vector3.up * _topRaycastLength);
-
-        //Corner Distance Check
-        Gizmos.DrawLine(_position - _innerRaycastOffset + Vector3.up * _topRaycastLength,
-            _position - _innerRaycastOffset + Vector3.up * _topRaycastLength +
-            Vector3.left * _topRaycastLength);
-        Gizmos.DrawLine(_position + _innerRaycastOffset + Vector3.up * _topRaycastLength,
-            _position + _innerRaycastOffset + Vector3.up * _topRaycastLength +
-            Vector3.right * _topRaycastLength);
     }
 }
