@@ -6,13 +6,15 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private int _startingHealth = 10;
     private int _currentHealth;
-    
+    public int enemyDamage = 5;
+
     void Start()
     {
         _currentHealth = _startingHealth;
     }
-    void Update()
+    void OnTriggerEnter2D(Collider2D col)
     {
+        col.gameObject.GetComponent<Enemy>().TakeDamage(enemyDamage);
     }
     public void TakeDamage(int amount)
     {

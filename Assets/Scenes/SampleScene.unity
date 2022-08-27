@@ -545,11 +545,29 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &744713318 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3964764421356496351, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
+  m_PrefabInstance: {fileID: 3964764420758620601}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &744713320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3964764421356496337, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
   m_PrefabInstance: {fileID: 3964764420758620601}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &744713323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 744713318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce7586f7511fea64bb13ab4c9bd4cb45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 20
 --- !u!1 &997627097
 GameObject:
   m_ObjectHideFlags: 0
