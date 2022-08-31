@@ -12,6 +12,8 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] _resolutions;
     private int _targetFramerate;
+    public GameObject mainMenu;
+    public GameObject settingsMenu;
 
     private void Start()
     {
@@ -71,5 +73,11 @@ public class SettingsMenu : MonoBehaviour
     {
         Resolution res = _resolutions[resIndex];
         Screen.SetResolution(res.width, res.height, Screen.fullScreen);
+    }
+
+    public void CloseSettings()
+    {
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 }
