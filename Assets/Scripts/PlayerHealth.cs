@@ -6,19 +6,26 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int _playerHealth = 20;
     private int _currentHealth;
-    private bool isAlive;
-    // Start is called before the first frame update
+    public Canvas youDiedScreen;
+    //private bool isAlive;
+
     void Start()
     {
-        isAlive = true;
+        //isAlive = true;
         _currentHealth = _playerHealth;
     }
 
+    private void Update()
+    {
+        
+    }
     public void TakeDamage(int amount)
     {
         _currentHealth -= amount;
         if (_currentHealth <= 0)
-            Destroy(gameObject);
+        {
+            Die();
+        }
     }
 
     private void Die()

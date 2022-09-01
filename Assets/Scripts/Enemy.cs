@@ -12,9 +12,11 @@ public class Enemy : MonoBehaviour
     {
         _currentHealth = _startingHealth;
     }
-    void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        col.gameObject.GetComponent<Enemy>().TakeDamage(enemyDamage);
+        Debug.Log("AA");
+        if(col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
+            _playerHealth.TakeDamage(enemyDamage);
     }
     public void TakeDamage(int amount)
     {

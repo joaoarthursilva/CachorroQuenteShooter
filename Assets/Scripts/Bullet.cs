@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour
     public int bulletDamage;
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        collision.gameObject.GetComponent<Enemy>().TakeDamage(bulletDamage);
+        if(collision.gameObject.TryGetComponent(out Enemy _enemy))
+            _enemy.TakeDamage(bulletDamage);
         Destroy(gameObject);
     }
     void OnBecameInvisible()
