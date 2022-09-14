@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PastelMovement : MonoBehaviour
+public class PastelMovement : Enemy
 {
     private Rigidbody2D rb;
     public int velocidade;
@@ -11,7 +11,11 @@ public class PastelMovement : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
-
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
+            _playerHealth.TakeDamage(enemyDamage);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {

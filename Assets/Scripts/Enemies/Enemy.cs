@@ -13,12 +13,6 @@ public class Enemy : MonoBehaviour
         _currentHealth = _startingHealth;
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
-            _playerHealth.TakeDamage(enemyDamage);
-    }
-
     public void TakeDamage(int amount)
     {
         _currentHealth -= amount;

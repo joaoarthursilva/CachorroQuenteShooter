@@ -12,22 +12,22 @@ public class PlayerCharacterController : MonoBehaviour
     private LayerMask _groundLayer;
 
     [Header("Movement Variables")] [SerializeField]
-    private float _movementAcceleration;
+    private float _movementAcceleration =75;
 
-    [SerializeField] private float _maxMoveSpeed;
-    [SerializeField] private float _groundLinearDrag;
+    [SerializeField] private float _maxMoveSpeed=8f;
+    [SerializeField] private float _groundLinearDrag=10f;
     private float _horizontalDirection;
 
     private bool _changingDirection => (_rb.velocity.x > 0f && _horizontalDirection < 0f) ||
                                        (_rb.velocity.x < 0f && _horizontalDirection > 0f);
 
     [Header("Jump Variables")] [SerializeField]
-    private float _jumpForce = 12f;
+    private float _jumpForce = 25f;
 
     [SerializeField] private float _fallMultiplier = 8f;
-    [SerializeField] private float _lowJumpFallMultiplier = 5f;
+    [SerializeField] private float _lowJumpFallMultiplier = 6f;
     [SerializeField] private float _airLinearDrag = 2.5f;
-    [SerializeField] private int _extraJumps = 1;
+    [SerializeField] private int _extraJumps = 0;
     [SerializeField] private float _coyoteTime = .1f;
     [SerializeField] private float _jumpBufferLength = .1f;
     private float _coyoteTimeCounter;
@@ -36,7 +36,7 @@ public class PlayerCharacterController : MonoBehaviour
     private bool _canJump => _jumpBufferCounter > 0f && (_coyoteTimeCounter > 0f || _extraJumpsValue > 0);
 
     [Header("Ground Collision Variables")] [SerializeField]
-    private float _groundRaycastLength;
+    private float _groundRaycastLength = 1.37f;
 
     [SerializeField] private Vector3 _groundRaycastOffset;
     private bool _onGround;

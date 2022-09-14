@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 0}
+  target: {fileID: 3964764421356496337, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
 --- !u!70 &3044958771200970456
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _startingHealth: 10
+  enemyDamage: 5
 --- !u!1 &3044958771246814695
 GameObject:
   m_ObjectHideFlags: 0
