@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3044958771200970436}
   - component: {fileID: 3044958771200970457}
   - component: {fileID: 3044958771200970456}
-  - component: {fileID: 3044958771200970459}
+  - component: {fileID: 1439262912}
   m_Layer: 0
   m_Name: Asinha
   m_TagString: Untagged
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  target: {fileID: 3964764421356496337, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
+  target: {fileID: 0}
 --- !u!70 &3044958771200970456
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -137,7 +137,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.09, y: 1.32}
   m_Direction: 0
---- !u!114 &3044958771200970459
+--- !u!114 &1439262912
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3044958771200970437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf3593439657c854b998484fa8fbe868, type: 3}
+  m_Script: {fileID: 11500000, guid: c725d92031623f14193806885a5ecc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startingHealth: 10

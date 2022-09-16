@@ -109,7 +109,6 @@ GameObject:
   - component: {fileID: 9085366899214764436}
   - component: {fileID: 9085366899214764441}
   - component: {fileID: 9085366899214764438}
-  - component: {fileID: 7232396368848565746}
   m_Layer: 0
   m_Name: Coxinha
   m_TagString: Untagged
@@ -170,15 +169,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.15237093}
   m_Size: {x: 0.87709165, y: 1.0634866}
   m_Direction: 0
---- !u!114 &7232396368848565746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9085366899214764434}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce2c381324258f548ba9127416f488ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
