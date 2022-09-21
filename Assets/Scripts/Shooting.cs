@@ -2,22 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Shooting : MonoBehaviour
 {
-    [SerializeField] private Transform _gunPivot;
-    [SerializeField] private Transform _firePoint;
+    [FormerlySerializedAs("_gunPivot")] [SerializeField] private Transform gunPivot;
+    [FormerlySerializedAs("_firePoint")] [SerializeField] private Transform firePoint;
     public Camera cam;
     private Vector2 _mousePos;
     public GameObject bulletPrefab;
     private GameObject _bullet;
     public float bulletForce = 20f;
     private Rigidbody2D _rb;
-    public float shootDelay = 2f;
-    private float _shootDelayCounter;
-    
+    public float fireRate = 0.5F;
+    private float _nextFire = 0.0F;
+
     private void Start()
-    {        
+    {
     }
 
     private void Update()
@@ -27,29 +28,26 @@ public class Shooting : MonoBehaviour
 
     private void Shoot()
     {
-        _bullet = Instantiate(bulletPrefab, _firePoint.position, _firePoint.rotation);
+        _bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         _rb = _bullet.GetComponent<Rigidbody2D>();
-        _rb.AddForce(_firePoint.right * bulletForce, ForceMode2D.Impulse);
+        _rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);
     }
 
     private void FixedUpdate()
     {
-        Vector3 position = _gunPivot.position;
+        Vector3 position = gunPivot.position;
         Vector2 lookDir = _mousePos - new Vector2(position.x, position.y);
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, angle + 90);
-        // Debug.Log(_shootDelayCounter);
-        if (canShoot())
+        if (CanShoot())
         {
-                Shoot();
-                // _shootDelayCounter = shootDelay;
+            _nextFire = Time.time + fireRate;
+            Shoot();
         }
-        if(_shootDelayCounter>0f)
-            _shootDelayCounter -= Time.deltaTime;
     }
 
-    private bool canShoot()
+    private bool CanShoot()
     {
-        return Input.GetButton("Fire1"); //&& _shootDelayCounter>0f;
+        return Input.GetButton("Fire1") && Time.time > _nextFire;
     }
 }

@@ -57,7 +57,7 @@ Transform:
   m_GameObject: {fileID: 3964764421058919249}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2055, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.16, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3964764421367322459}
@@ -76,11 +76,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4cdda6639215540b7077975688927d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunPivot: {fileID: 3964764421058919248}
-  _firePoint: {fileID: 3964764422136492737}
+  gunPivot: {fileID: 3964764421058919248}
+  firePoint: {fileID: 3964764422136492737}
   cam: {fileID: 0}
   bulletPrefab: {fileID: 6451795966673503679, guid: 3b0dccc2c622e8f47ad540700d2872f3, type: 3}
   bulletForce: 20
+  fireRate: 0.1
 --- !u!1 &3964764421356496351
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +98,7 @@ GameObject:
   - component: {fileID: 744713323}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -333,9 +334,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964764421367322456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.761, y: 0.05, z: 0}
-  m_LocalScale: {x: 1.0539057, y: 0.23085903, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3964764422136492737}
   m_Father: {fileID: 3964764421058919248}
@@ -417,7 +418,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964764422136492750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.68, y: 0, z: 0}
+  m_LocalPosition: {x: 0.499, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,7 +437,7 @@ GameObject:
   - component: {fileID: 3964764422808334782}
   m_Layer: 0
   m_Name: PlayerSprite
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

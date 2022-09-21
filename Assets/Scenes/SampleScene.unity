@@ -277,26 +277,10 @@ PrefabInstance:
       propertyPath: startingSpawnPoint
       value: 
       objectReference: {fileID: 1939089748}
-    - target: {fileID: 3964764421058919248, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421058919248, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421058919248, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3964764421058919250, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 519420031}
-    - target: {fileID: 3964764421058919250, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: shootDelay
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3964764421356496337, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -344,30 +328,6 @@ PrefabInstance:
     - target: {fileID: 3964764421356496351, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421356496351, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421367322459, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421367322459, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421367322459, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421367322459, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3964764421367322459, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe2f640f3240ef498163b6515c18cf5, type: 3}
@@ -3543,12 +3503,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4cdda6639215540b7077975688927d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunPivot: {fileID: 1868064817}
-  _firePoint: {fileID: 1275597904}
+  gunPivot: {fileID: 1868064817}
+  firePoint: {fileID: 1275597904}
   cam: {fileID: 519420031}
   bulletPrefab: {fileID: 6451795966673503679, guid: 3b0dccc2c622e8f47ad540700d2872f3, type: 3}
   bulletForce: 20
-  shootDelay: 0.1
+  fireRate: 0.5
 --- !u!114 &1868064819
 MonoBehaviour:
   m_ObjectHideFlags: 0
