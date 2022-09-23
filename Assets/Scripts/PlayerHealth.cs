@@ -7,14 +7,18 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int playerHealth = 20;
     private int _currentHealth;
     public Transform startingSpawnPoint;
-    private Vector3 _currentSpawnPointPosition;
+    private Vector3 _currentSpawnPoint;
     public Canvas youDiedScreen;
 
     private bool _isDead;
 
-    void Start()
+    public void SetSpawnPoint(Transform spawnpoint)
     {
-        _currentSpawnPointPosition = startingSpawnPoint.position;
+        _currentSpawnPoint = spawnpoint.position;
+    }
+    private void Start()
+    {
+        _currentSpawnPoint = startingSpawnPoint.position;
         Spawn();
     }
 
@@ -43,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
     private void Spawn()
     {
         Time.timeScale = 1;
-        gameObject.transform.position = _currentSpawnPointPosition;
+        gameObject.transform.position = _currentSpawnPoint;
         _isDead = false;
         youDiedScreen.gameObject.SetActive(false);
         _currentHealth = playerHealth;

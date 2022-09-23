@@ -7,7 +7,7 @@ using Pathfinding;
 public class EnemyGraphics : MonoBehaviour
 {
     public AIPath aiPath;
-
+    public Rigidbody2D rb2d;
     private void Update()
     {
         if (aiPath.desiredVelocity.x >= 0.01f)
