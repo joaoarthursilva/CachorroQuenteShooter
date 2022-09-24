@@ -22,11 +22,7 @@ public class PlayerHealth : MonoBehaviour
         Spawn();
     }
 
-    private void Update()
-    {
-        if (_isDead && Input.GetMouseButton(0))
-            Spawn();
-    }
+    
 
     public void TakeDamage(int amount)
     {
@@ -44,7 +40,12 @@ public class PlayerHealth : MonoBehaviour
         _isDead = true;
     }
 
-    private void Spawn()
+    public bool IsDead()
+    {
+        return _isDead;
+    }
+
+    public void Spawn()
     {
         Time.timeScale = 1;
         gameObject.transform.position = _currentSpawnPoint;

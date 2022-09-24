@@ -9,24 +9,26 @@ public class CoxinhaBehavior : Enemy
     public int moveSpeed;
 
     public Rigidbody2D rb;
+    private bool _canMove;
 
-    // Start is called before the first frame update
     void Start()
     {
+        _canMove = false;
     }
-
+    private void OnBecameVisible()
+    {
+        _canMove = true;
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
             _playerHealth.TakeDamage(enemyDamage);
     }
-
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        Move();
+        if(_canMove) Move();
     }
-
     private void Move()
     {
         float playerPos = player.transform.position.x;

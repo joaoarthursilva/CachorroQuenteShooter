@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class Spawnpoint : MonoBehaviour
 {
-    public GameObject player;
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        collider.GetComponent<PlayerHealth>().SetSpawnPoint(gameObject.transform);
+        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().SetSpawnPoint(gameObject.transform);
     }
 }
