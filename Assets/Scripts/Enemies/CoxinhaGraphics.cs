@@ -1,22 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CoxinhaGraphics : MonoBehaviour
+namespace Enemies
 {
-    private Transform _coxinhaTransform;
-    public Transform player;
-
-    private void Start()
+    public class CoxinhaGraphics : MonoBehaviour
     {
-        _coxinhaTransform = gameObject.GetComponent<Transform>();
-    }
+        private Transform _coxinhaTransform;
+        public Transform player;
 
-    private void Update()
-    {
-        transform.localScale = player.position.x > _coxinhaTransform.position.x
-            ? new Vector3(-1.262974f, 1.438251f, 1f)
-            : new Vector3(1.262974f, 1.438251f, 1f);
+        private void Start()
+        {
+            _coxinhaTransform = gameObject.GetComponent<Transform>();
+        }
+
+        private void Update()
+        {
+            transform.localScale = player.position.x > _coxinhaTransform.position.x
+                ? new Vector3(-1.262974f, 1.438251f, 1f)
+                : new Vector3(1.262974f, 1.438251f, 1f);
+        }
     }
 }

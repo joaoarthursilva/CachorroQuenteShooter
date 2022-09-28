@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Pause : MonoBehaviour
+public class PauseManager : MonoBehaviour
 {
     public GameObject pauseMenu;
     [SerializeField] private bool isPaused = false;
@@ -13,8 +13,7 @@ public class Pause : MonoBehaviour
     {
         pauseMenu.SetActive(false);
     }
-
-
+    
     public void ResumeGame()
     {
         isPaused = false;

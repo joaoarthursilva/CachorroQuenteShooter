@@ -147,3 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletDamage: 1
+  sprites:
+  - {fileID: 21300000, guid: 0495a4de1537d5445b5c1488d4f21f66, type: 3}
+  - {fileID: 21300000, guid: 080bcd2a4c0c2f344bc40f9ee268d238, type: 3}

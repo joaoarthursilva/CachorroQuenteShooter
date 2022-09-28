@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DontDestroy : MonoBehaviour
+namespace Managers
 {
-    void Start()
+    public class DontDestroy : MonoBehaviour
     {
-        DontDestroyOnLoad(gameObject);
-    }
+        void Start()
+        {
+            DontDestroyOnLoad(gameObject);
+        }
 
+    }
 }

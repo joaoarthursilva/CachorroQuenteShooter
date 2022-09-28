@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1351783410}
   m_Layer: 0
   m_Name: Asinha
-  m_TagString: Untagged
+  m_TagString: Asinha
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,11 +107,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c725d92031623f14193806885a5ecc60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingHealth: 10
-  enemyDamage: 5
   speed: 600
   nextWaypointDistance: 3
   repeatRate: 0.2
+  startingHealth: 5
+  enemyDamage: 1
 --- !u!50 &1351783409
 Rigidbody2D:
   serializedVersion: 4

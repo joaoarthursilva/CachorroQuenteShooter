@@ -1,34 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PastelMovement : Enemy
+namespace Enemies
 {
-    private Rigidbody2D _rb;
-    public int velocidade;
-    private bool _canMove;
-    private Vector2 _forca;
-
-    void Start()
+    public class PastelMovement : Enemy
     {
-         _forca = new Vector2(-velocidade, 0);
-        _canMove = false;
-        _rb = gameObject.GetComponent<Rigidbody2D>();
-    }
+        [Header("Movement Variables")]
+        private GameObject _player;
+        public int moveSpeed;
+        private Rigidbody2D _rb;
+        private bool _canMove;
+    
+        public int startingHealth = 10;
+        private int _currentHealth;
+        public int enemyDamage = 5;
+    
+        private void Start()
+        {
+            _player = GameObject.FindWithTag("Player");
+            _rb = gameObject.GetComponent<Rigidbody2D>();
+            _currentHealth = startingHealth;
+            _canMove = false;
+        }
 
-    private void OnBecameVisible()
-    {
-        _canMove = true;
-    }
+        private void OnBecameVisible()
+        {
+            _canMove = true;
+        }
+        public override void TakeDamage(int amount)
+        {
+            _currentHealth -= amount;
+            if (_currentHealth <= 0)
+                Destroy(gameObject);
+        }
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.CompareTag("Coxinha") || col.gameObject.CompareTag("Asinha"))
+            {
+                var pastelCollider = gameObject.GetComponent<CapsuleCollider2D>();
+                var colliderAIgnorar = col.gameObject.GetComponent<CapsuleCollider2D>();
+                Physics2D.IgnoreCollision(pastelCollider, colliderAIgnorar);
+            }
+            
+            if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+                playerHealth.TakeDamage(enemyDamage);
+        }
 
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
-            _playerHealth.TakeDamage(enemyDamage);
-    }
+        private void FixedUpdate()
+        {
+            if(_canMove) Move();
+        }
+        private void Move()
+        {
+            var playerPos = _player.transform.position.x;
+            var enemyPos = transform.position;
+            var targetPos = new Vector2(playerPos, enemyPos.y);
 
-    void FixedUpdate()
-    {
-        if(_canMove) _rb.AddForce(_forca);
+            var position = Vector2.MoveTowards(enemyPos, targetPos, moveSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(position);
+        }
     }
 }

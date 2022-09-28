@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private int playerHealth = 20;
+    [SerializeField] private int startingHealth = 6;
     private int _currentHealth;
     public Transform startingSpawnPoint;
     private Vector3 _currentSpawnPoint;
@@ -33,6 +34,16 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public int GetCurrentHealth()
+    {
+        return _currentHealth;
+    }
+    public void RegenerateHealth(int amount)
+    {
+        _currentHealth += amount;
+        _currentHealth = Math.Min(_currentHealth, startingHealth);
+    }
+    
     private void Die()
     {
         Time.timeScale = 0;
@@ -51,6 +62,6 @@ public class PlayerHealth : MonoBehaviour
         gameObject.transform.position = _currentSpawnPoint;
         _isDead = false;
         youDiedScreen.gameObject.SetActive(false);
-        _currentHealth = playerHealth;
+        _currentHealth = startingHealth;
     }
 }

@@ -1,41 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CoxinhaBehavior : Enemy
+namespace Enemies
 {
-    public GameObject player;
-    public int moveSpeed;
-
-    public Rigidbody2D rb;
-    private bool _canMove;
-
-    void Start()
+    public class CoxinhaBehavior : Enemy
     {
-        _canMove = false;
-    }
-    private void OnBecameVisible()
-    {
-        _canMove = true;
-    }
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
-            _playerHealth.TakeDamage(enemyDamage);
-    }
+        [Header("Movement Variables")]
+        private GameObject _player;
+        public int moveSpeed;
     
-    void FixedUpdate()
-    {
-        if(_canMove) Move();
-    }
-    private void Move()
-    {
-        float playerPos = player.transform.position.x;
-        Vector3 enemyPos = transform.position;
-        Vector2 targetPos = new Vector2(playerPos, enemyPos.y);
+        private Rigidbody2D _rb;
+        private bool _canMove;
+    
+        [Header("Health Variables")]
+        public int startingHealth = 10;
+        private int _currentHealth;
+        public int enemyDamage = 5;
+    
+        private void Start()
+        {
+            _player = GameObject.FindWithTag("Player");
+            _rb = gameObject.GetComponent<Rigidbody2D>();
+            _currentHealth = startingHealth;
+            _canMove = false;
+        }
 
-        Vector2 position = Vector2.MoveTowards(enemyPos, targetPos, moveSpeed * Time.fixedDeltaTime);
-        rb.MovePosition(position);
+        public override void TakeDamage(int amount)
+        {
+            _currentHealth -= amount;
+            if (_currentHealth <= 0)
+                Destroy(gameObject);
+        }
+
+
+        private void OnBecameVisible()
+        {
+            _canMove = true;
+        }
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+                playerHealth.TakeDamage(enemyDamage);
+        }
+    
+        private void FixedUpdate()
+        {
+            if(_canMove) Move();
+        }
+        private void Move()
+        {
+            var playerPos = _player.transform.position.x;
+            var enemyPos = transform.position;
+            var targetPos = new Vector2(playerPos, enemyPos.y);
+
+            var position = Vector2.MoveTowards(enemyPos, targetPos, moveSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(position);
+        }
     }
 }
