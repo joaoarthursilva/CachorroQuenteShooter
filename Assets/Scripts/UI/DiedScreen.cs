@@ -1,21 +1,22 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class DiedScreen : MonoBehaviour
+namespace UI
 {
-    private PlayerHealth _playerHealth;
-    private void Start()
+    public class DiedScreen : MonoBehaviour
     {
-       _playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
-    }
-
-    public void Respawn()
-    {
-        if (_playerHealth.IsDead())
+        private PlayerHealth _playerHealth;
+        private void Start()
         {
-            _playerHealth.Spawn();
+            _playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
+        }
+
+        public void Respawn()
+        {
+            if (_playerHealth.IsDead())
+            {
+                _playerHealth.Spawn();
+            }
         }
     }
 }

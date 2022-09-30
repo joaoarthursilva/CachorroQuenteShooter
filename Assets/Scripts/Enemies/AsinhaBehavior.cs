@@ -1,11 +1,12 @@
 using Pathfinding;
+using Player;
 using UnityEngine;
 
 namespace Enemies
 {
     public class AsinhaBehavior : Enemy
     {
-        private Transform target;
+        private Transform _target;
         public float speed = 300f;
         public float nextWaypointDistance = 3f;
         private Path _path;
@@ -19,15 +20,15 @@ namespace Enemies
         public int startingHealth = 10;
         private int _currentHealth;
         public int enemyDamage = 5;
-    
-        void Start()
+
+        private void Start()
         {
             _currentHealth = startingHealth;
             _transform = gameObject.GetComponent<Transform>();
             _canMove = false;
             _seeker = GetComponent<Seeker>();
             _rb = GetComponent<Rigidbody2D>();
-            target = GameObject.FindWithTag("Player").transform;
+            _target = GameObject.FindWithTag("Player").transform;
 
             InvokeRepeating(nameof(UpdatePath), 0f, repeatRate);
         }
@@ -42,7 +43,7 @@ namespace Enemies
         private void UpdatePath()
         {
             if(_seeker.IsDone())
-                _seeker.StartPath(_rb.position, target.position, OnPathComplete);
+                _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
         }
         private void OnPathComplete(Path p)
         {
@@ -65,7 +66,7 @@ namespace Enemies
 
         private void Update()
         {
-            transform.localScale = target.position.x > _transform.position.x
+            transform.localScale = _target.position.x > _transform.position.x
                 ? new Vector3(-1f, .6f, 1f)
                 : new Vector3(1f, .6f, 1f);
         }
@@ -84,12 +85,12 @@ namespace Enemies
             }
 
 
-            Vector2 direction = ((Vector2) _path.vectorPath[_currentWaypoint] - _rb.position).normalized;
-            Vector2 force = direction * (speed * Time.deltaTime);
+            var direction = ((Vector2) _path.vectorPath[_currentWaypoint] - _rb.position).normalized;
+            var force = direction * (speed * Time.deltaTime);
 
             _rb.AddForce(force);
         
-            float distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
+            var distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
         
             if (distance < nextWaypointDistance)
             {

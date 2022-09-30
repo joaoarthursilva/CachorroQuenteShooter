@@ -1,3 +1,4 @@
+using Player;
 using UnityEngine;
 
 namespace Enemies.Batata_Boss
@@ -8,8 +9,8 @@ namespace Enemies.Batata_Boss
         private void OnCollisionEnter2D(Collision2D col)
         {
             Debug.Log(col);
-            if (col.gameObject.TryGetComponent(out PlayerHealth _playerHealth))
-                _playerHealth.TakeDamage(enemyDamage);
+            if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+                playerHealth.TakeDamage(enemyDamage);
         }
     }
 }

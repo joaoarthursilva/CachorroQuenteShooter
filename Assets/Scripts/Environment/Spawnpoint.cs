@@ -1,12 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class Spawnpoint : MonoBehaviour
+namespace Environment
 {
-    private void OnTriggerEnter2D(Collider2D collider)
+    public class Spawnpoint : MonoBehaviour
     {
-        GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().SetSpawnPoint(gameObject.transform);
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().SetSpawnPoint(gameObject.transform);
+        }
     }
 }

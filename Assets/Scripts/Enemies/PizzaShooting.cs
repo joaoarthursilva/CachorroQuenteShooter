@@ -19,7 +19,7 @@ namespace Enemies
             _targetPos = player.position;
         }
 
-        void Update()
+        private void Update()
         {
             _playerRelativePos = cam.ScreenToWorldPoint(_targetPos);
             if (Input.GetButtonDown("Fire1"))
@@ -38,8 +38,8 @@ namespace Enemies
         private void FixedUpdate()
         {
             var position = gunPivot.position;
-            Vector2 lookDir = _playerRelativePos - new Vector2(position.x, position.y);
-            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+            var lookDir = _playerRelativePos - new Vector2(position.x, position.y);
+            var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             transform.rotation = Quaternion.Euler(0f, 0f, angle + 90);
         }
     }

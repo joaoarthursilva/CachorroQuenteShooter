@@ -9,7 +9,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private bool isPaused = false;
     private bool _togglePause = false;
 
-    void Start()
+    private void Start()
     {
         pauseMenu.SetActive(false);
     }
@@ -51,7 +51,7 @@ public class PauseManager : MonoBehaviour
         Application.Quit();
     }
 
-    void Update()
+    private void Update()
     {
         _togglePause = Input.GetKeyDown(KeyCode.Escape);
         TogglePause(_togglePause);

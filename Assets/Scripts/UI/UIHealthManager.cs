@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 public class UIHealthManager : MonoBehaviour
@@ -8,12 +9,12 @@ public class UIHealthManager : MonoBehaviour
     public List<GameObject> halfHearts;
     public List<GameObject> emptyHearts;
     private PlayerHealth _playerHealth;
-    void Start()
+    private void Start()
     {
         _playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         switch (_playerHealth.GetCurrentHealth())
         {
@@ -98,8 +99,6 @@ public class UIHealthManager : MonoBehaviour
                     halfHearts[i].SetActive(false);
                     emptyHearts[i].SetActive(false);
                 }
-                break;
-            default:
                 break;
         }
     }

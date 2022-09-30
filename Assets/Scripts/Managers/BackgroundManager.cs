@@ -1,22 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundManager : MonoBehaviour
+namespace Managers
 {
-    private float _length, _startPos;
-    public Camera cam;
-    public float effect;
-    void Start()
+    public class BackgroundManager : MonoBehaviour
     {
-        _startPos = transform.position.x;
-        _length = GetComponent<SpriteRenderer>().bounds.size.x;
-    }
+        private float _length, _startPos;
+        public Camera cam;
+        public float effect;
 
-    void FixedUpdate()
-    {
-        float dist = (cam.transform.position.x * effect);
+        private void Start()
+        {
+            _startPos = transform.position.x;
+            _length = GetComponent<SpriteRenderer>().bounds.size.x;
+        }
 
-        transform.position = new Vector3(_startPos + dist, 0, transform.position.z);
+        private void FixedUpdate()
+        {
+            var dist = (cam.transform.position.x * effect);
+
+            var transform1 = transform;
+            transform1.position = new Vector3(_startPos + dist, 0, transform1.position.z);
+        }
     }
 }

@@ -19,6 +19,7 @@ public class Shooting : MonoBehaviour
 
     private void Start()
     {
+        
     }
 
     private void Update()
@@ -35,9 +36,9 @@ public class Shooting : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 position = gunPivot.position;
-        Vector2 lookDir = _mousePos - new Vector2(position.x, position.y);
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        var position = gunPivot.position;
+        var lookDir = _mousePos - new Vector2(position.x, position.y);
+        var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0f, 0f, angle + 90);
         if (CanShoot())
         {

@@ -9,13 +9,14 @@ namespace Enemies
         public Rigidbody2D rb2d;
         private void Update()
         {
-            if (aiPath.desiredVelocity.x >= 0.01f)
+            switch (aiPath.desiredVelocity.x)
             {
-                transform.localScale = new Vector3(-1f, 0.6f, 1f);
-            }
-            else if (aiPath.desiredVelocity.x <= -0.01f)
-            {
-                transform.localScale = new Vector3(1f, 0.6f, 1f);
+                case >= 0.01f:
+                    transform.localScale = new Vector3(-1f, 0.6f, 1f);
+                    break;
+                case <= -0.01f:
+                    transform.localScale = new Vector3(1f, 0.6f, 1f);
+                    break;
             }
         }
     }

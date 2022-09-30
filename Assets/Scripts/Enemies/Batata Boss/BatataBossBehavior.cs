@@ -8,7 +8,7 @@ namespace Enemies.Batata_Boss
         public Vector3 refriUpPosition;
         public Vector3 refriDownPosition;
         public float refriMoveSpeed=3f;
-        void Start()
+        private void Start()
         {
         }
 
