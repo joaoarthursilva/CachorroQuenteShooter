@@ -11,10 +11,11 @@ GameObject:
   - component: {fileID: 3044958771200970438}
   - component: {fileID: 3044958771200970439}
   - component: {fileID: 3044958771200970457}
-  - component: {fileID: 3044958771200970456}
   - component: {fileID: 1439262912}
   - component: {fileID: 1351783409}
   - component: {fileID: 1351783410}
+  - component: {fileID: 6749619141443853419}
+  - component: {fileID: 3708270857323871545}
   m_Layer: 0
   m_Name: Asinha
   m_TagString: Asinha
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3044958771200970437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 1
   startEndModifier:
     addPoints: 0
@@ -79,22 +80,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   target: {fileID: 0}
---- !u!70 &3044958771200970456
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3044958771200970437}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 73726175132e0ab4190d9cff749d68dd, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.006008148, y: 0}
-  m_Size: {x: 1.2642288, y: 1.4219182}
-  m_Direction: 0
 --- !u!114 &1439262912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e6840e0e1c691be4481047a056290e4e, type: 3}
   m_Color: {r: 0.8207547, g: 0.556435, b: 0.3445621, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -185,3 +170,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6749619141443853419
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044958771200970437}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.22200167, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6113316
+--- !u!70 &3708270857323871545
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3044958771200970437}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.44948483, y: -0.27133518}
+  m_Size: {x: 0.855402, y: 1.025329}
+  m_Direction: 0

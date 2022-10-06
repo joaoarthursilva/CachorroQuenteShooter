@@ -67,8 +67,8 @@ namespace Enemies
         private void Update()
         {
             transform.localScale = _target.position.x > _transform.position.x
-                ? new Vector3(-1f, .6f, 1f)
-                : new Vector3(1f, .6f, 1f);
+                ? new Vector3(-1f, 1f, 1f)
+                : new Vector3(1f, 1f, 1f);
         }
 
         private void FixedUpdate()

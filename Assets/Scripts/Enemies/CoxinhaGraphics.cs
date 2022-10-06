@@ -5,18 +5,19 @@ namespace Enemies
     public class CoxinhaGraphics : MonoBehaviour
     {
         private Transform _coxinhaTransform;
-        public Transform player;
+        private Transform _player;
 
         private void Start()
         {
+            _player = GameObject.FindWithTag("Player").GetComponent<Transform>();
             _coxinhaTransform = gameObject.GetComponent<Transform>();
         }
 
         private void Update()
         {
-            transform.localScale = player.position.x > _coxinhaTransform.position.x
-                ? new Vector3(-1.262974f, 1.438251f, 1f)
-                : new Vector3(1.262974f, 1.438251f, 1f);
+            transform.localScale = _player.position.x > _coxinhaTransform.position.x
+                ? new Vector3(-1f, 1f, 1f)
+                : new Vector3(1f, 1f, 1f);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 
@@ -42,7 +43,16 @@ namespace Enemies
             if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
                 playerHealth.TakeDamage(enemyDamage);
         }
-    
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.CompareTag("Player"))
+            {
+                // ativa a explosao
+                throw new NotImplementedException();
+            }
+        }
+
         private void FixedUpdate()
         {
             if(_canMove) Move();
