@@ -1,35 +1,36 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using Enemies;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Bullet : MonoBehaviour
+namespace Player
 {
-    public int bulletDamage;
-    public List<Sprite> sprites;
-    private void Start()
+    public class Bullet : MonoBehaviour
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, 2)];
-        // change sprite
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.TryGetComponent(out Enemy enemy))
-            enemy.TakeDamage(bulletDamage);
-        if (collision.gameObject.CompareTag("Player"))
+        public int bulletDamage;
+        public List<Sprite> sprites;
+        private void Start()
         {
-            //arrumar isso
-            Physics2D.IgnoreCollision(collision.collider, gameObject.GetComponent<BoxCollider2D>());
-            return;
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, 2)];
+            // change sprite
         }
-        Destroy(gameObject);
-    }
 
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
+        private void OnTriggerEnter2D(Collider2D collider)
+        {
+            if (collider.gameObject.TryGetComponent(out Enemy enemy))
+                enemy.TakeDamage(bulletDamage);
+            if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Ignore"))
+            {
+                //arrumar isso
+                Physics2D.IgnoreCollision(collider, gameObject.GetComponent<BoxCollider2D>());
+                return;
+            }
+            Destroy(gameObject);
+        }
+
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
     }
 }

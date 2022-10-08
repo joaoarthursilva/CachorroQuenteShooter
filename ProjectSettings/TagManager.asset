@@ -7,6 +7,7 @@ TagManager:
   - OneWayPlatform
   - Asinha
   - Coxinha
+  - Ignore
   layers:
   - Default
   - TransparentFX

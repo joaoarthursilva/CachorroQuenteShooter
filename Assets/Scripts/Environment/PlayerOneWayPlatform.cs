@@ -16,10 +16,10 @@ namespace Environment
         private void Update()
         {
             if (_currentOneWayPlatform == null) return;
-            if (Input.GetAxis("Vertical") <= -.5f)
+            /* if (Input.GetAxis("Vertical") <= -.5f)
             {
                 StartCoroutine(DisableCollision());
-            } 
+            } */
         }
 
         private void OnCollisionEnter2D(Collision2D col)
