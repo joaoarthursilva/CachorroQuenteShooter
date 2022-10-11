@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6346910871033004664}
   - component: {fileID: 634886989}
   - component: {fileID: 2035716455537779042}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Coxinha
   m_TagString: Coxinha
   m_Icon: {fileID: 0}
