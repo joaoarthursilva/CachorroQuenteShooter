@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8918782118058407107}
   - component: {fileID: 683880810962016720}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Pizza Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,9 +77,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ee6c2bf913bccc14cbaca9545f7bbd8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4.94, y: 3.44}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletDamage: 1
   sprites:
-  - {fileID: 21300000, guid: 574ba6e3e2016994dbab26fa4b5f5031, type: 3}
-  - {fileID: 21300000, guid: cc6e96bf73282a34e9245981ee4de63a, type: 3}
+  - {fileID: 21300000, guid: 0495a4de1537d5445b5c1488d4f21f66, type: 3}
+  - {fileID: 21300000, guid: 080bcd2a4c0c2f344bc40f9ee268d238, type: 3}
 --- !u!96 &683880810962016720
 TrailRenderer:
   serializedVersion: 2
