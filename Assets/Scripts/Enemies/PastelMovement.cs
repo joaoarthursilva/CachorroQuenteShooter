@@ -33,6 +33,11 @@ namespace Enemies
             if (_currentHealth <= 0)
                 Destroy(gameObject);
         }
+        private void Update()
+        {
+            gameObject.GetComponent<SpriteRenderer>().flipX = _player.transform.position.x > transform.position.x;
+        }
+        
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (col.gameObject.CompareTag("Coxinha") || col.gameObject.CompareTag("Asinha"))

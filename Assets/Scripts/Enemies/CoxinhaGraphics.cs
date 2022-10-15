@@ -15,9 +15,7 @@ namespace Enemies
 
         private void Update()
         {
-            transform.localScale = _player.position.x > _coxinhaTransform.position.x
-                ? new Vector3(-1f, 1f, 1f)
-                : new Vector3(1f, 1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().flipX = _player.position.x > _coxinhaTransform.position.x;
         }
     }
 }

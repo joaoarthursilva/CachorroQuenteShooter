@@ -13,7 +13,7 @@ namespace Enemies
         private int _currentWaypoint;
         private Seeker _seeker;
         private Rigidbody2D _rb;
-        public float repeatRate=.5f;
+        public float repeatRate = .5f;
         private Transform _transform;
         private bool _canMove;
 
@@ -32,7 +32,7 @@ namespace Enemies
 
             InvokeRepeating(nameof(UpdatePath), 0f, repeatRate);
         }
-    
+
         public override void TakeDamage(int amount)
         {
             _currentHealth -= amount;
@@ -42,13 +42,14 @@ namespace Enemies
 
         private void UpdatePath()
         {
-            if(_seeker.IsDone())
+            if (_seeker.IsDone())
                 _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
         }
+
         private void OnPathComplete(Path p)
         {
             if (p.error) return;
-        
+
             _path = p;
             _currentWaypoint = 0;
         }
@@ -66,14 +67,12 @@ namespace Enemies
 
         private void Update()
         {
-            transform.localScale = _target.position.x > _transform.position.x
-                ? new Vector3(-1f, 1f, 1f)
-                : new Vector3(1f, 1f, 1f);
+            gameObject.GetComponent<SpriteRenderer>().flipX = !(_target.position.x > _transform.position.x);
         }
 
         private void FixedUpdate()
         {
-            if(_canMove) Movement();
+            if (_canMove) Movement();
         }
 
         private void Movement()
@@ -84,14 +83,13 @@ namespace Enemies
                 return;
             }
 
-
-            var direction = ((Vector2) _path.vectorPath[_currentWaypoint] - _rb.position).normalized;
+            var direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
             var force = direction * (speed * Time.deltaTime);
 
             _rb.AddForce(force);
-        
+
             var distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWaypoint]);
-        
+
             if (distance < nextWaypointDistance)
             {
                 _currentWaypoint++;
