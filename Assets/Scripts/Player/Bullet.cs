@@ -12,7 +12,6 @@ namespace Player
         private void Start()
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, 2)];
-            // change sprite
         }
 
         private void OnTriggerEnter2D(Collider2D collider)
