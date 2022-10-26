@@ -15,11 +15,7 @@ namespace Player
         private Rigidbody2D _rb;
         public float fireRate = 0.5F;
         private float _nextFire = 0.0F;
-
-        private void Start()
-        {
-            
-        }
+        
 
         private void Update()
         {

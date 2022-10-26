@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7772574218038488133}
   - component: {fileID: 7772574218038488131}
   - component: {fileID: 7772574218038488130}
-  - component: {fileID: 8918782118058407107}
   - component: {fileID: 683880810962016720}
+  - component: {fileID: 2419992601268822976}
   m_Layer: 0
   m_Name: Pizza Bullet
   m_TagString: Untagged
@@ -122,35 +122,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.06403148, y: 0.06403136}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.94, y: 3.44}
+    oldSize: {x: 4.116667, y: 2.8666666}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.7533524, y: 2.632802}
   m_EdgeRadius: 0
---- !u!114 &8918782118058407107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6451795966673503679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db4730f6c532ca34eb1f4db43da27572, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletDamage: 1
-  sprites:
-  - {fileID: 21300000, guid: 0495a4de1537d5445b5c1488d4f21f66, type: 3}
-  - {fileID: 21300000, guid: 080bcd2a4c0c2f344bc40f9ee268d238, type: 3}
 --- !u!96 &683880810962016720
 TrailRenderer:
   serializedVersion: 2
@@ -250,3 +234,16 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &2419992601268822976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451795966673503679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ad7a56b828c4741ac71631e8d8806f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 7

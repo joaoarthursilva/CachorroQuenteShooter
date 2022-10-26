@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 3825932924068950744}
   - component: {fileID: 3825932924068950745}
   - component: {fileID: 3825932924068950694}
-  m_Layer: 0
+  - component: {fileID: 7845687485251463134}
+  m_Layer: 3
   m_Name: Pizza
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,6 +194,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58966494, y: 0.6931114}
   m_EdgeRadius: 0
+--- !u!114 &7845687485251463134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3825932924068950693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7410c65981dd94c4395db194bcf42581, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 6451795966673503679, guid: f505063ac7752d245a8708746bdabfbc, type: 3}
+  shootPoint: {fileID: 3825932924314622632}
+  fireRate: 0.5
+  startingHealth: 10
 --- !u!1 &3825932924314622633
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,8 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3825932924314622632}
-  - component: {fileID: 3825932924314622634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,28 +234,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3825932924314622633}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.01, y: -0.296, z: 0}
   m_LocalScale: {x: 1, y: 0.052667964, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3825932924068950695}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3825932924314622634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3825932924314622633}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de5ef6ef62ec7864ba7f688cf592bbf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunPivot: {fileID: 3825932924314622632}
-  firePoint: {fileID: 3825932924314622632}
-  player: {fileID: 0}
-  cam: {fileID: 0}
-  bulletPrefab: {fileID: 6451795966673503679, guid: 3b0dccc2c622e8f47ad540700d2872f3, type: 3}
-  bulletForce: 20

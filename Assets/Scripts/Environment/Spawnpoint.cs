@@ -5,7 +5,7 @@ namespace Environment
 {
     public class Spawnpoint : MonoBehaviour
     {
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnTriggerEnter2D(Collider2D col)
         {
             GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().SetSpawnPoint(gameObject.transform);
         }

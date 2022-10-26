@@ -5,9 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - OneWayPlatform
-  - Asinha
-  - Coxinha
   - Ignore
+  - Enemy
   layers:
   - Default
   - TransparentFX

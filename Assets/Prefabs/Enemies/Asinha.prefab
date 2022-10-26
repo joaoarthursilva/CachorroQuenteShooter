@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3708270857323871545}
   m_Layer: 0
   m_Name: Asinha
-  m_TagString: Asinha
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

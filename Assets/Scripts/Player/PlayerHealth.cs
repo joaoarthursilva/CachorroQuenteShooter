@@ -17,6 +17,7 @@ namespace Player
         {
             _currentSpawnPoint = spawnpoint.position;
         }
+
         private void Start()
         {
             _currentSpawnPoint = startingSpawnPoint.position;
@@ -36,12 +37,13 @@ namespace Player
         {
             return _currentHealth;
         }
+
         public void RegenerateHealth(int amount)
         {
             _currentHealth += amount;
             _currentHealth = Math.Min(_currentHealth, startingHealth);
         }
-    
+
         private void Die()
         {
             Time.timeScale = 0;
