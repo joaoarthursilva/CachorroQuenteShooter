@@ -18,12 +18,12 @@ namespace Player
         {
             if (collider.gameObject.TryGetComponent(out Enemy enemy))
                 enemy.TakeDamage(bulletDamage);
-            if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Ignore"))
-            {
-                //arrumar isso
-                Physics2D.IgnoreCollision(collider, gameObject.GetComponent<BoxCollider2D>());
-                return;
-            }
+            // if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Ignore"))
+            // {
+            //     //arrumar isso
+            //     Physics2D.IgnoreCollision(collider, gameObject.GetComponent<BoxCollider2D>());
+            //     return;
+            // }
             Destroy(gameObject);
         }
 

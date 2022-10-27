@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 3825932924068950745}
   - component: {fileID: 3825932924068950694}
   - component: {fileID: 7845687485251463134}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: Pizza
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -219,7 +219,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3825932924314622632}
-  m_Layer: 3
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

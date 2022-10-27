@@ -7,6 +7,7 @@ TagManager:
   - OneWayPlatform
   - Ignore
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -17,9 +18,9 @@ TagManager:
   - PostProcessing
   - Background
   - Player
-  - 
-  - 
-  - 
+  - Enemy
+  - PizzaBullet
+  - PlayerBullet
   - 
   - 
   - 

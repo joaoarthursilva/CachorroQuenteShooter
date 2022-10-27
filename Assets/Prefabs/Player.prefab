@@ -647,6 +647,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 512
   movementAcceleration: 75
   maxMoveSpeed: 8
   groundLinearDrag: 10

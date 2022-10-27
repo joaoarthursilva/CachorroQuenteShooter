@@ -1,3 +1,4 @@
+using System;
 using Pathfinding;
 using Player;
 using UnityEngine;
@@ -52,6 +53,13 @@ namespace Enemies
 
             _path = p;
             _currentWaypoint = 0;
+        }
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (!col.gameObject.CompareTag("Player"))
+                return;
+            TakeDamage(_currentHealth);
         }
 
         private void OnCollisionEnter2D(Collision2D col)

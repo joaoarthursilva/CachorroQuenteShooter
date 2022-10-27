@@ -46,9 +46,9 @@ namespace Player
 
         private void Die()
         {
-            Time.timeScale = 0;
             youDiedScreen.gameObject.SetActive(true);
             _isDead = true;
+            Time.timeScale = 0;
         }
 
         public bool IsDead()

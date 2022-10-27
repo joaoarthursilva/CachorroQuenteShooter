@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7772574218038488130}
   - component: {fileID: 683880810962016720}
   - component: {fileID: 2419992601268822976}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Pizza Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

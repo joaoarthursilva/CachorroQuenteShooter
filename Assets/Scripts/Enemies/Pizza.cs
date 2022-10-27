@@ -52,12 +52,12 @@ namespace Enemies
 
         private void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.gameObject.CompareTag("Enemy"))
-            {
-                var thisCollider = gameObject.GetComponent<Collider2D>();
-                var colliderAIgnorar = col.gameObject.GetComponent<Collider2D>();
-                Physics2D.IgnoreCollision(thisCollider, colliderAIgnorar);
-            }
+            // if (col.gameObject.CompareTag("Enemy"))
+            // {
+            //     var thisCollider = gameObject.GetComponent<Collider2D>();
+            //     var colliderAIgnorar = col.gameObject.GetComponent<Collider2D>();
+            //     Physics2D.IgnoreCollision(thisCollider, colliderAIgnorar);
+            // }
 
             if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
                 playerHealth.TakeDamage(1);

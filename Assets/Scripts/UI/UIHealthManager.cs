@@ -20,7 +20,7 @@ public class UIHealthManager : MonoBehaviour
         
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         switch (_playerHealth.GetCurrentHealth())
         {

@@ -10,11 +10,13 @@ namespace Player
         [Header("Layer Masks")] [SerializeField]
         private LayerMask groundLayer;
 
-        [Header("Movement Variables")] [SerializeField]
-        private float movementAcceleration =75;
+        [SerializeField] private LayerMask enemyLayer;
 
-        [SerializeField] private float maxMoveSpeed=8f;
-        [SerializeField] private float groundLinearDrag=10f;
+        [Header("Movement Variables")] [SerializeField]
+        private float movementAcceleration = 75;
+
+        [SerializeField] private float maxMoveSpeed = 8f;
+        [SerializeField] private float groundLinearDrag = 10f;
         private float _horizontalDirection;
 
         private bool changingDirection => (_rb.velocity.x > 0f && _horizontalDirection < 0f) ||
@@ -141,7 +143,11 @@ namespace Player
             _onGround = Physics2D.Raycast(_position + groundRaycastOffset, Vector2.down, groundRaycastLength,
                             groundLayer) ||
                         Physics2D.Raycast(_position - groundRaycastOffset, Vector2.down, groundRaycastLength,
-                            groundLayer);
+                            groundLayer) ||
+                        Physics2D.Raycast(_position + groundRaycastOffset, Vector2.down, groundRaycastLength,
+                            enemyLayer) ||
+                        Physics2D.Raycast(_position - groundRaycastOffset, Vector2.down, groundRaycastLength,
+                            enemyLayer);
         }
 
         private void OnDrawGizmos()
