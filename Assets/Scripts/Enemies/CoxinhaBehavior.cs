@@ -15,6 +15,12 @@ namespace Enemies
         [Header("Health Variables")] public int startingHealth = 10;
         private int _currentHealth;
         public int enemyDamage = 5;
+        private bool _exploding;
+
+        [Header("Attack Variables")] [SerializeField]
+        private float timeToDamage;
+
+        [SerializeField] private GameObject explosaoCoxinha;
 
         private void Start()
         {
@@ -22,6 +28,9 @@ namespace Enemies
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _currentHealth = startingHealth;
             _canMove = false;
+            _exploding = false;
+            timeToDamage = .5f;
+            explosaoCoxinha.SetActive(false);
         }
 
         public override void TakeDamage(int amount)
@@ -36,16 +45,9 @@ namespace Enemies
             _canMove = true;
         }
 
-        private void OnCollisionEnter2D(Collision2D col)
+        private void OnCollisionStay2D(Collision2D col)
         {
-            // if (col.gameObject.CompareTag("Enemy"))
-            // {
-            //     var thisCollider = gameObject.GetComponent<Collider2D>();
-            //     var colliderAIgnorar = col.gameObject.GetComponent<Collider2D>();
-            //     Physics2D.IgnoreCollision(thisCollider, colliderAIgnorar);
-            // }
-
-            if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+            if (timeToDamage <= 0 && col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
                 playerHealth.TakeDamage(enemyDamage);
         }
 
@@ -53,14 +55,22 @@ namespace Enemies
         {
             if (col.gameObject.CompareTag("Player"))
             {
-                // ativa a explosao
-                throw new NotImplementedException();
+                Explodir();
             }
+        }
+
+        private void Explodir()
+        {
+            _exploding = true;
+            // começar animação aqui
+            // esperar o tempo
+            explosaoCoxinha.SetActive(true);
+            // gameObject.SetActive(false);
         }
 
         private void FixedUpdate()
         {
-            if (_canMove) Move();
+            if (_canMove && !_exploding) Move();
         }
 
         private void Move()
