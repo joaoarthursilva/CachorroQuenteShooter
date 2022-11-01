@@ -1,5 +1,3 @@
-using System;
-using Player;
 using UnityEngine;
 
 namespace Enemies
@@ -18,9 +16,13 @@ namespace Enemies
         private bool _exploding;
 
         [Header("Attack Variables")] [SerializeField]
-        private float timeToDamage;
+        private GameObject explosaoCoxinha;
 
-        [SerializeField] private GameObject explosaoCoxinha;
+        [Header("Animation Variables")] [SerializeField]
+        private Animator coxinhaAnimator;
+
+        private static readonly int IsExploding = Animator.StringToHash("IsExploding");
+        private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
         private void Start()
         {
@@ -29,8 +31,8 @@ namespace Enemies
             _currentHealth = startingHealth;
             _canMove = false;
             _exploding = false;
-            timeToDamage = .5f;
             explosaoCoxinha.SetActive(false);
+            coxinhaAnimator.SetBool(IsRunning, true);
         }
 
         public override void TakeDamage(int amount)
@@ -45,11 +47,11 @@ namespace Enemies
             _canMove = true;
         }
 
-        private void OnCollisionStay2D(Collision2D col)
-        {
-            if (timeToDamage <= 0 && col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
-                playerHealth.TakeDamage(enemyDamage);
-        }
+        // private void OnCollisionStay2D(Collision2D col)
+        // {
+        //     if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+        //         playerHealth.TakeDamage(enemyDamage);
+        // }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
@@ -62,15 +64,22 @@ namespace Enemies
         private void Explodir()
         {
             _exploding = true;
-            // começar animação aqui
+            coxinhaAnimator.SetBool(IsRunning, false);
+            coxinhaAnimator.SetBool(IsExploding, true);
+            if (coxinhaAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 &&
+                !coxinhaAnimator.IsInTransition(0))
+            {
+                explosaoCoxinha.SetActive(true);
+            }
+
             // esperar o tempo
-            explosaoCoxinha.SetActive(true);
-            // gameObject.SetActive(false);
         }
 
         private void FixedUpdate()
         {
             if (_canMove && !_exploding) Move();
+            var isRunning = _rb.velocity.x != 0;
+            coxinhaAnimator.SetBool(IsRunning, isRunning);
         }
 
         private void Move()

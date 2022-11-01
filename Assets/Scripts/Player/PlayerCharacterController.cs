@@ -28,7 +28,7 @@ namespace Player
         [SerializeField] private float fallMultiplier = 8f;
         [SerializeField] private float lowJumpFallMultiplier = 6f;
         [SerializeField] private float airLinearDrag = 2.5f;
-        [SerializeField] private int extraJumps = 0;
+        [SerializeField] private int extraJumps;
         [SerializeField] private float coyoteTime = .1f;
         [SerializeField] private float jumpBufferLength = .1f;
         private float _coyoteTimeCounter;

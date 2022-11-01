@@ -7,7 +7,9 @@ namespace Environment
     {
         private void OnTriggerEnter2D(Collider2D col)
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().SetSpawnPoint(gameObject.transform);
+            if (!col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+                return;
+            playerHealth.SetSpawnPoint(gameObject.transform);
         }
     }
 }

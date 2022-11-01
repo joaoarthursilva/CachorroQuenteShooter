@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7375468213528630569}
   - component: {fileID: 4134134273314859454}
   - component: {fileID: 6762098967030309130}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Explosao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 2.9
 --- !u!114 &6762098967030309130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +62,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionDamage: 1
-  raioExplosao: 2
+  raioExplosao: 2.9
+  coxinha: {fileID: 9085366899214764434}
 --- !u!1 &9085366899214764434
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +79,7 @@ GameObject:
   - component: {fileID: 6346910871033004664}
   - component: {fileID: 634886989}
   - component: {fileID: 2035716455537779042}
+  - component: {fileID: 9115711630041985165}
   m_Layer: 9
   m_Name: Coxinha
   m_TagString: Untagged
@@ -165,8 +167,8 @@ MonoBehaviour:
   moveSpeed: 5
   startingHealth: 8
   enemyDamage: 1
-  timeToDamage: 0
   explosaoCoxinha: {fileID: 5630381056496495132}
+  coxinhaAnimator: {fileID: 9115711630041985165}
 --- !u!212 &634886989
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -245,3 +247,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3610992, y: 1.6353534}
   m_EdgeRadius: 0
+--- !u!95 &9115711630041985165
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085366899214764434}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68b840373f216fd4a9531ea138c443dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

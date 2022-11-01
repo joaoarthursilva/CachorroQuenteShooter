@@ -1,4 +1,3 @@
-using System;
 using Pathfinding;
 using Player;
 using UnityEngine;
@@ -7,6 +6,7 @@ namespace Enemies
 {
     public class AsinhaBehavior : Enemy
     {
+        private int _counter;
         private Transform _target;
         public float speed = 300f;
         public float nextWaypointDistance = 3f;
@@ -22,6 +22,11 @@ namespace Enemies
         private int _currentHealth;
         public int enemyDamage = 5;
 
+        [Header("Attack Variables")] [SerializeField]
+        private float timeDamageDelay = .5f;
+
+        private float _timeDamageDelayCounter;
+
         private void Start()
         {
             _currentHealth = startingHealth;
@@ -30,7 +35,7 @@ namespace Enemies
             _seeker = GetComponent<Seeker>();
             _rb = GetComponent<Rigidbody2D>();
             _target = GameObject.FindWithTag("Player").transform;
-
+            _counter = 0;
             InvokeRepeating(nameof(UpdatePath), 0f, repeatRate);
         }
 
@@ -62,10 +67,21 @@ namespace Enemies
             TakeDamage(_currentHealth);
         }
 
-        private void OnCollisionEnter2D(Collision2D col)
+        private void OnCollisionStay2D(Collision2D col)
         {
-            if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
-                playerHealth.TakeDamage(enemyDamage);
+            if (CanDealDamage()) _counter = 0;
+            if (_counter != 0) return;
+            if (!CanDealDamage() ||
+                !col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
+                return;
+            playerHealth.TakeDamage(enemyDamage);
+            _timeDamageDelayCounter = timeDamageDelay;
+            _counter++;
+        }
+
+        private bool CanDealDamage()
+        {
+            return _timeDamageDelayCounter <= 0;
         }
 
         private void OnBecameVisible()
@@ -80,6 +96,7 @@ namespace Enemies
 
         private void FixedUpdate()
         {
+            _timeDamageDelayCounter -= Time.deltaTime;
             if (_canMove) Movement();
         }
 
@@ -91,7 +108,7 @@ namespace Enemies
                 return;
             }
 
-            var direction = ((Vector2)_path.vectorPath[_currentWaypoint] - _rb.position).normalized;
+            var direction = ((Vector2) _path.vectorPath[_currentWaypoint] - _rb.position).normalized;
             var force = direction * (speed * Time.deltaTime);
 
             _rb.AddForce(force);
