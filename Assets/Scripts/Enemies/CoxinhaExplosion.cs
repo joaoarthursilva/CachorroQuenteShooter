@@ -33,7 +33,7 @@ namespace Enemies
         {
             if (timeToExplosion <= 0)
             {
-                Destroy(coxinha);
+                Destroy(coxinha, .1f);
             }
 
             timeToExplosion -= Time.fixedDeltaTime;

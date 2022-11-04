@@ -10,6 +10,7 @@ namespace Environment
             if (!col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
                 return;
             playerHealth.SetSpawnPoint(gameObject.transform);
+            gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 }

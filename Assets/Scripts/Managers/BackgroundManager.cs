@@ -16,10 +16,17 @@ namespace Managers
 
         private void FixedUpdate()
         {
-            var dist = (cam.transform.position.x * effect);
+            var position = cam.transform.position;
+            var temp = (position.x * 1 - effect);
+            var dist = (position.x * effect);
 
             var transform1 = transform;
-            transform1.position = new Vector3(_startPos + dist, 0, transform1.position.z);
+            var position1 = transform1.position;
+            position1 = new Vector3(_startPos + dist, position1.y, position1.z);
+            transform1.position = position1;
+            if (temp > _startPos + _length) _startPos += _length;
+            else if (temp < _startPos - _length) _startPos -= _length;
         }
+        
     }
 }

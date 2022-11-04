@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class IceBehavior : MonoBehaviour
+namespace Environment
 {
-    public float timeToMelt;
-    public GameObject geloSprite;
-    private void OnTriggerEnter2D(Collider2D col)
+    public class IceBehavior : MonoBehaviour
     {
-        if (!col.gameObject.CompareTag("Player")) return;
-        //começa a destruir
-        //comeca animacao
-        Debug.Log("entrou");
+        public float timeToMelt = 1.5f;
+        public Animator geloAnim;
+
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (!col.gameObject.CompareTag("Player")) return;
+            //começa a destruir
+            //comeca animacao
+            Destroy(gameObject, timeToMelt);
+        }
     }
 }

@@ -18,10 +18,10 @@ namespace Enemies
             _rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void OnCollisionEnter2D(Collision2D col)
         {
-            if (!col.gameObject.CompareTag("Player")) return;
-            col.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+            if (col.gameObject.CompareTag("Player"))
+                col.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
             Destroy(gameObject);
         }
 
