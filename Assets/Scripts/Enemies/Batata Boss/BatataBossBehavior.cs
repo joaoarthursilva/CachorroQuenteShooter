@@ -48,6 +48,21 @@ namespace Enemies.Batata_Boss
                 VenceuOBoss();
         }
 
+        private void Ataque1() // em baixo
+        {
+            AtacaBaixo();
+        }
+        private void Ataque2() // em cima
+        {
+            AtacaCima();
+        }
+        private void Ataque3() // levanta refri e ataca em cima
+        {
+            LevantaRefrigerante();
+            Ataque2();
+        }
+
+
         private void VenceuOBoss()
         {
             Debug.Log("Venceu");
@@ -60,7 +75,7 @@ namespace Enemies.Batata_Boss
 
         private void AtacaCima()
         {
-            Instantiate(batataAfiadaObject, pontoAtaqueCima.position, Quaternion.identity);
+            Instantiate(batataAfiadaObject, pontoAtaqueCima.position, new Quaternion(0f,90f,0, 0.5f));
         }
 
         private void LevantaRefrigerante()
