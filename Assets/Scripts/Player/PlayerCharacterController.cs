@@ -11,6 +11,7 @@ namespace Player
         private LayerMask groundLayer;
 
         [SerializeField] private LayerMask enemyLayer;
+        [SerializeField] private LayerMask oneWayPlatformLayer;
 
         [Header("Movement Variables")] [SerializeField]
         private float movementAcceleration = 75;
@@ -148,6 +149,11 @@ namespace Player
                             enemyLayer) ||
                         Physics2D.Raycast(_position - groundRaycastOffset, Vector2.down, groundRaycastLength,
                             enemyLayer);
+            // ||
+            // Physics2D.Raycast(_position + groundRaycastOffset, Vector2.down, groundRaycastLength,
+            //     oneWayPlatformLayer) ||
+            // Physics2D.Raycast(_position - groundRaycastOffset, Vector2.down, groundRaycastLength,
+            //     oneWayPlatformLayer);
         }
 
         private void OnDrawGizmos()

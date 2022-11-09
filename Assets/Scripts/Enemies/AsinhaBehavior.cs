@@ -8,19 +8,19 @@ namespace Enemies
     {
         private int _counter;
         private Transform _target;
-        public float speed = 300f;
+        public float speed = 600f;
         public float nextWaypointDistance = 3f;
         private Path _path;
         private int _currentWaypoint;
         private Seeker _seeker;
         private Rigidbody2D _rb;
-        public float repeatRate = .5f;
+        public float repeatRate = .2f;
         private Transform _transform;
         private bool _canMove;
 
         public int startingHealth = 10;
         private int _currentHealth;
-        public int enemyDamage = 5;
+        public int enemyDamage = 1;
 
         [Header("Attack Variables")] [SerializeField]
         private float timeDamageDelay = .5f;

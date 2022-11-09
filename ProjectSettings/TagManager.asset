@@ -8,6 +8,8 @@ TagManager:
   - Ignore
   - Enemy
   - Bullet
+  - DiedScreen
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - PizzaBullet
   - PlayerBullet
   - Energetico
-  - 
+  - OneWayPlatform
   - 
   - 
   - 
