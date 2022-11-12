@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionDamage: 1
   raioExplosao: 2.9
+  timeToExplosion: 0.7
   coxinha: {fileID: 9085366899214764434}
 --- !u!1 &9085366899214764434
 GameObject:

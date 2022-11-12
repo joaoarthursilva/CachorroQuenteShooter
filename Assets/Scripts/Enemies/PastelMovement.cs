@@ -54,7 +54,8 @@ namespace Enemies
         private void Update()
         {
             _position = gameObject.transform.position;
-            if (Physics2D.Raycast(_position, Vector2.left, raycastLength, playerLayer))
+            if (Physics2D.Raycast(_position, Vector2.left, raycastLength, playerLayer) ||
+                Physics2D.Raycast(_position, Vector2.right, raycastLength, playerLayer))
             {
                 // trigger animation here
                 _hasSeenPlayer = true;

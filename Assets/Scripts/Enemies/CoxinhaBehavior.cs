@@ -5,9 +5,6 @@ namespace Enemies
     public class CoxinhaBehavior : Enemy
     {
         [Header("Movement Variables")] private GameObject _player;
-        // [SerializeField] private float maxMoveSpeed = 11f;
-
-        [SerializeField] private float movementAcceleration = 55;
         public int moveSpeed;
 
         private Rigidbody2D _rb;
@@ -15,7 +12,7 @@ namespace Enemies
 
         [Header("Health Variables")] public int startingHealth = 10;
         private int _currentHealth;
-        // public int enemyDamage = 1;
+        public int enemyDamage = 5;
         private bool _exploding;
 
         [Header("Attack Variables")] [SerializeField]
@@ -89,14 +86,10 @@ namespace Enemies
         {
             var playerPos = _player.transform.position.x;
             var enemyPos = transform.position;
-            var isFacingRight = playerPos <= enemyPos.x;
-            if (isFacingRight)
-                _rb.AddForce(new Vector2(-1, 0f) * movementAcceleration);
-            else
-                _rb.AddForce(new Vector2(1, 0f) * movementAcceleration);
+            var targetPos = new Vector2(playerPos, enemyPos.y);
 
-            if (Mathf.Abs(_rb.velocity.x) > moveSpeed)
-                _rb.velocity = new Vector2(Mathf.Sign(_rb.velocity.x) * moveSpeed, _rb.velocity.y);
+            var position = Vector2.MoveTowards(enemyPos, targetPos, moveSpeed * Time.fixedDeltaTime);
+            _rb.MovePosition(position);
         }
     }
 }

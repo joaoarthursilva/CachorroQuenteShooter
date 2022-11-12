@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Enemies.Batata_Boss
 {
-    public class BatataBossBehavior : Enemy
+    public class BatataBossBehavior : MonoBehaviour
     {
-        [Header("Vida")] public int batataBossHealth = 100;
-        private int _currentHealth;
+        [Header("Vida")] public int vidaBatata = 100;
+        public int _vidaAtual;
 
         [Header("Ataque Refrigerante")] public GameObject refrigerante;
         public Vector3 refriUpPosition;
@@ -24,7 +24,7 @@ namespace Enemies.Batata_Boss
 
         private void Start()
         {
-            _currentHealth = batataBossHealth;
+            _vidaAtual = vidaBatata;
         }
 
         private void FixedUpdate()
@@ -44,7 +44,7 @@ namespace Enemies.Batata_Boss
                 shootBaixo = false;
             }
 
-            if (_currentHealth <= 0)
+            if (_vidaAtual <= 0)
                 VenceuOBoss();
         }
 
@@ -52,12 +52,10 @@ namespace Enemies.Batata_Boss
         {
             AtacaBaixo();
         }
-
         private void Ataque2() // em cima
         {
             AtacaCima();
         }
-
         private void Ataque3() // levanta refri e ataca em cima
         {
             LevantaRefrigerante();
@@ -78,7 +76,7 @@ namespace Enemies.Batata_Boss
 
         private void AtacaCima()
         {
-            Instantiate(batataAfiadaObject, pontoAtaqueCima.position, new Quaternion(0f, 90f, 0, 0.5f));
+            Instantiate(batataAfiadaObject, pontoAtaqueCima.position, new Quaternion(0f,00f,0f, 0.5f));
         }
 
         private void LevantaRefrigerante()
@@ -94,19 +92,11 @@ namespace Enemies.Batata_Boss
                 Vector3.MoveTowards(refrigerante.transform.position, refriDownPosition, 0.1f);
         }
 
-        // private void OnCollisionEnter2D(Collision2D col)
-        // {
-        //     if (col.gameObject.layer == 11)
-        //         TakeDamage(1);
-        // }
-
-        public override void TakeDamage(int amount)
+        private void OnCollisionEnter2D(Collision2D col)
         {
-            _currentHealth -= amount;
-            if (_currentHealth <= 0)
-            {
-                // rodar animação de morte, começar a proxima fase
-            }
+            if (col.gameObject.layer != 11)
+                return;
+            _vidaAtual -= 1;
         }
     }
 }

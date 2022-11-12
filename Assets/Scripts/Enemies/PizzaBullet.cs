@@ -15,7 +15,8 @@ namespace Enemies
             _rb = GetComponent<Rigidbody2D>();
             _target = GameObject.FindWithTag("Player").GetComponent<Transform>();
             _moveDirection = (_target.transform.position - transform.position).normalized * moveSpeed;
-            _rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
+            _rb.AddForce(new Vector2(_moveDirection.x, _moveDirection.y), ForceMode2D.Impulse);
+            // _rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
         }
 
         private void OnCollisionEnter2D(Collision2D col)

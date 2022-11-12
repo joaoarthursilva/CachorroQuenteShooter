@@ -34,7 +34,10 @@ namespace Enemies
             _timeDamageDelayCounter = timeDamageDelay;
             _counter++;
         }
-
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
         private bool CanDealDamage()
         {
             return _timeDamageDelayCounter <= 0;
