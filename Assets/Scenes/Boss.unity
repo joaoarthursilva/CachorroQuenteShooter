@@ -712,9 +712,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MesaPlataforma
       objectReference: {fileID: 0}
+    - target: {fileID: 1314354046509005361, guid: ed6403d0ce590f941b19c76bfb82a8cb, type: 3}
+      propertyPath: m_SortingOrder
+      value: -35
+      objectReference: {fileID: 0}
     - target: {fileID: 1314354046509005362, guid: ed6403d0ce590f941b19c76bfb82a8cb, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1314354046509005362, guid: ed6403d0ce590f941b19c76bfb82a8cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1609,7 +1613,7 @@ Transform:
   - {fileID: 1453211024}
   - {fileID: 121771723}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &656288094
 GameObject:
@@ -1696,7 +1700,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 192224731485543747, guid: b81d4e32f61e64c4b9fa2e32bca5482a, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 192224731485543747, guid: b81d4e32f61e64c4b9fa2e32bca5482a, type: 3}
       propertyPath: m_LocalPosition.x
