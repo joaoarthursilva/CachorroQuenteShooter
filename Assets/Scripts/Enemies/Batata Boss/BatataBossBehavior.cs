@@ -5,8 +5,12 @@ namespace Enemies.Batata_Boss
 {
     public class BatataBossBehavior : MonoBehaviour
     {
+        [Header("Geral")] [SerializeField] private GameObject rightBarrier;
+
+        // [Header("Animaçoes")] [SerializeField] private Animator anim;
+
         [Header("Vida")] public int vidaBatata = 100;
-        public int _vidaAtual;
+        private int _vidaAtual;
 
         [Header("Ataque Refrigerante")] public GameObject refrigerante;
         public Vector3 refriUpPosition;
@@ -14,13 +18,14 @@ namespace Enemies.Batata_Boss
         public float refriMoveSpeed = 3f;
         public bool toggleRefri = false;
 
-
         [Header("Ataque Baixo")] public Transform pontoAtaqueBaixo;
         public GameObject ondaDeBatataObject;
         public bool shootBaixo = false;
+
         [Header("Ataque Cima")] public Transform pontoAtaqueCima;
         public GameObject batataAfiadaObject;
         public bool shootCima = false;
+
 
         private void Start()
         {
@@ -52,20 +57,25 @@ namespace Enemies.Batata_Boss
         {
             AtacaBaixo();
         }
+
         private void Ataque2() // em cima
         {
             AtacaCima();
         }
+
         private void Ataque3() // levanta refri e ataca em cima
         {
             LevantaRefrigerante();
             Ataque2();
         }
 
-
         private void VenceuOBoss()
         {
-            Debug.Log("Venceu");
+            //trigger anim
+            //remove barrier
+            rightBarrier.gameObject.SetActive(false);
+            //deactivate box
+            gameObject.SetActive(false);
         }
 
         private void AtacaBaixo()
@@ -76,7 +86,8 @@ namespace Enemies.Batata_Boss
 
         private void AtacaCima()
         {
-            Instantiate(batataAfiadaObject, pontoAtaqueCima.position, new Quaternion(0f,00f,0f, 0.5f));
+            Instantiate(batataAfiadaObject, pontoAtaqueCima.position,
+                transform.rotation * Quaternion.Euler(0f, 0f, 90f));
         }
 
         private void LevantaRefrigerante()
