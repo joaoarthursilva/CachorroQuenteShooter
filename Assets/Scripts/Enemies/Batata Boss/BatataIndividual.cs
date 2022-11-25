@@ -10,10 +10,12 @@ namespace Enemies.Batata_Boss
         {
             var sprite = gameObject.GetComponent<SpriteRenderer>();
             var a = Random.Range(0, 2);
-            if (a == 0)
-                sprite.flipX = true;
-            else if (a == 1)
-                sprite.flipX = false;
+            sprite.flipX = a switch
+            {
+                0 => true,
+                1 => false,
+                _ => sprite.flipX
+            };
         }
     }
 }

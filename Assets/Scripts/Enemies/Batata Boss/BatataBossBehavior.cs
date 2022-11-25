@@ -20,12 +20,15 @@ namespace Enemies.Batata_Boss
 
         [Header("Ataque Baixo")] public Transform pontoAtaqueBaixo;
         public GameObject ondaDeBatataObject;
-        public bool shootBaixo = false;
+        public bool ataque1 = false;
+        private int _atacaBaixoCounter=0;
 
         [Header("Ataque Cima")] public Transform pontoAtaqueCima;
         public GameObject batataAfiadaObject;
-        public bool shootCima = false;
+        public bool ataque2 = false;
+        private int _atacaCimaCounter=0;
 
+        [Header("Ataque Cima com Refri")] public bool ataque3 = false;
 
         private void Start()
         {
@@ -36,36 +39,51 @@ namespace Enemies.Batata_Boss
         {
             if (toggleRefri) LevantaRefrigerante();
             else AbaixaRefrigerante();
-
-            if (shootCima)
+            if(_atacaBaixoCounter>=3)
             {
-                AtacaCima();
-                shootCima = false;
+                CancelInvoke(nameof(AtacaBaixo));
+                _atacaBaixoCounter = 0;
+            }
+            if(_atacaCimaCounter>=3)
+            {
+                CancelInvoke(nameof(AtacaCima));
+                _atacaCimaCounter = 0;
+            }
+            if (ataque2)
+            {
+                Ataque2();
+                ataque2 = false;
             }
 
-            if (shootBaixo)
+            if (ataque1)
             {
-                AtacaBaixo();
-                shootBaixo = false;
+                Ataque1();
+                ataque1 = false;
             }
-
+            if (ataque3)
+            {
+                Ataque3();
+                ataque3 = false;
+            }
             if (_vidaAtual <= 0)
                 VenceuOBoss();
         }
 
         private void Ataque1() // em baixo
         {
-            AtacaBaixo();
+            InvokeRepeating(nameof(AtacaBaixo), 0f, .7f);
+            // AtacaBaixo();
         }
 
         private void Ataque2() // em cima
         {
-            AtacaCima();
+            InvokeRepeating(nameof(AtacaCima), 0f, .7f);
+            // AtacaCima();
         }
 
         private void Ataque3() // levanta refri e ataca em cima
         {
-            LevantaRefrigerante();
+            toggleRefri = true;
             Ataque2();
         }
 
@@ -82,12 +100,14 @@ namespace Enemies.Batata_Boss
         {
             if (!toggleRefri)
                 Instantiate(ondaDeBatataObject, pontoAtaqueBaixo.position, Quaternion.identity);
+            _atacaBaixoCounter++;
         }
 
         private void AtacaCima()
         {
             Instantiate(batataAfiadaObject, pontoAtaqueCima.position,
                 transform.rotation * Quaternion.Euler(0f, 0f, 90f));
+            _atacaCimaCounter++;
         }
 
         private void LevantaRefrigerante()

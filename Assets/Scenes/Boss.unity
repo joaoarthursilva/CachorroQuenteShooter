@@ -2508,10 +2508,11 @@ MonoBehaviour:
   toggleRefri: 0
   pontoAtaqueBaixo: {fileID: 1609867829}
   ondaDeBatataObject: {fileID: 3639927530860726984, guid: b2fec401996b66c4b9bd4acf0074abb1, type: 3}
-  shootBaixo: 0
+  ataque1: 0
   pontoAtaqueCima: {fileID: 1662892973}
   batataAfiadaObject: {fileID: 5272841240374147249, guid: 853e5581bda6d234e99d9ccf4e5fbcc9, type: 3}
-  shootCima: 0
+  ataque2: 0
+  ataque3: 0
 --- !u!61 &892920628
 BoxCollider2D:
   m_ObjectHideFlags: 0
