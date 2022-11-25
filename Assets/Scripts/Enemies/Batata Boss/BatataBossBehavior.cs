@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Enemies.Batata_Boss
@@ -17,38 +16,102 @@ namespace Enemies.Batata_Boss
         public Vector3 refriDownPosition;
         public float refriMoveSpeed = 3f;
         public bool toggleRefri = false;
-
+        public bool ataque3 = false;
         [Header("Ataque Baixo")] public Transform pontoAtaqueBaixo;
         public GameObject ondaDeBatataObject;
         public bool ataque1 = false;
-        private int _atacaBaixoCounter=0;
+        private int _atacaBaixoCounter = 0;
 
         [Header("Ataque Cima")] public Transform pontoAtaqueCima;
         public GameObject batataAfiadaObject;
         public bool ataque2 = false;
-        private int _atacaCimaCounter=0;
-
-        [Header("Ataque Cima com Refri")] public bool ataque3 = false;
+        private int _atacaCimaCounter;
+        private int _atacaCimaAmount;
+        
+        [Header("Ataques em geral")] private bool _isAttacking;
+        private bool _justAttacked;
+        public float attackDelay; 
 
         private void Start()
         {
+            _justAttacked = false;
+            Ataque2();
+            _atacaCimaCounter = 0;
             _vidaAtual = vidaBatata;
         }
 
         private void FixedUpdate()
         {
-            if (toggleRefri) LevantaRefrigerante();
-            else AbaixaRefrigerante();
-            if(_atacaBaixoCounter>=3)
+            ManageBossHealth();
+            ManageCurrentAttack();
+            ManageManualAttacks(); // for development only
+            if (!_isAttacking) ManageNextAttack();
+        }
+
+        private void ManageBossHealth()
+        {
+            if (_vidaAtual <= 0)
+                VenceuOBoss();
+        }
+
+        private void ManageCurrentAttack()
+        {
+            if (_atacaBaixoCounter >= 3)
             {
                 CancelInvoke(nameof(AtacaBaixo));
                 _atacaBaixoCounter = 0;
+                _isAttacking = false;
+                _justAttacked = true;
             }
-            if(_atacaCimaCounter>=3)
+
+            if (_atacaCimaCounter >= _atacaCimaAmount)
             {
                 CancelInvoke(nameof(AtacaCima));
                 _atacaCimaCounter = 0;
+                toggleRefri = false;
+                _isAttacking = false;
+                _justAttacked = true;
             }
+        }
+
+        private void ManageNextAttack()
+        {
+            var nextAttackId = Random.Range(0, 3);
+            if (_justAttacked)
+            {
+                WaitForNextAttack();
+            }
+            else
+            {
+                switch (nextAttackId)
+                {
+                    case 0:
+                        Ataque1();
+                        break;
+                    case 1:
+                        Ataque2();
+                        break;
+                    case 2:
+                        Ataque3();
+                        break;
+                }
+            }
+        }
+
+        private void WaitForNextAttack()
+        {
+            _isAttacking = true;
+            Invoke(nameof(BackToNextAttack), attackDelay);
+        }
+
+        private void BackToNextAttack()
+        {
+            _isAttacking = false;
+            _justAttacked = false;
+        }
+
+        private void ManageManualAttacks()
+        {
             if (ataque2)
             {
                 Ataque2();
@@ -60,31 +123,40 @@ namespace Enemies.Batata_Boss
                 Ataque1();
                 ataque1 = false;
             }
+
             if (ataque3)
             {
                 Ataque3();
                 ataque3 = false;
             }
-            if (_vidaAtual <= 0)
-                VenceuOBoss();
+
+            if (toggleRefri) LevantaRefrigerante();
+            else AbaixaRefrigerante();
         }
 
         private void Ataque1() // em baixo
         {
-            InvokeRepeating(nameof(AtacaBaixo), 0f, .7f);
-            // AtacaBaixo();
+            _isAttacking = true;
+            var repeatRate = Random.Range(.7f, 1f);
+
+            InvokeRepeating(nameof(AtacaBaixo), 0f, repeatRate);
         }
 
         private void Ataque2() // em cima
         {
-            InvokeRepeating(nameof(AtacaCima), 0f, .7f);
-            // AtacaCima();
+            _isAttacking = true;
+            var repeatRate = Random.Range(.6f, .8f);
+            _atacaCimaAmount = Random.Range(2, 7);
+            InvokeRepeating(nameof(AtacaCima), 0f, repeatRate);
         }
 
         private void Ataque3() // levanta refri e ataca em cima
         {
+            _isAttacking = true;
+            _atacaCimaAmount = Random.Range(8, 16);
+            var repeatRate = Random.Range(.6f, 1.2f);
             toggleRefri = true;
-            Ataque2();
+            InvokeRepeating(nameof(AtacaCima), 0f, repeatRate);
         }
 
         private void VenceuOBoss()
