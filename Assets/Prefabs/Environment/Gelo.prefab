@@ -174,4 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToMelt: 2
-  geloAnim: {fileID: 0}
+  canMove: 0
+  moveSpeed: 0
