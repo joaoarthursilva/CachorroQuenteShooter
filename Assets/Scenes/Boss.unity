@@ -2255,7 +2255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 192224731485543756, guid: b81d4e32f61e64c4b9fa2e32bca5482a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b81d4e32f61e64c4b9fa2e32bca5482a, type: 3}
@@ -2407,7 +2407,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &892920624
 Transform:
   m_ObjectHideFlags: 0
@@ -2442,7 +2442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightBarrier: {fileID: 1453211023}
-  vidaBatata: 100
+  vidaBatata: 150
   refrigerante: {fileID: 43553402}
   refriUpPosition: {x: 0, y: -5.5, z: 0}
   refriDownPosition: {x: 0, y: -11.4, z: 0}

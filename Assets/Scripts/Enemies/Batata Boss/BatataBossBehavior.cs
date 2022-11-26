@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace Enemies.Batata_Boss
 {
-    public class BatataBossBehavior : MonoBehaviour
+    public class BatataBossBehavior : Enemy
     {
         [Header("Geral")] [SerializeField] private GameObject rightBarrier;
 
         // [Header("Animaçoes")] [SerializeField] private Animator anim;
 
-        [Header("Vida")] public int vidaBatata = 100;
+        [Header("Vida")] public int vidaBatata = 150;
         private int _vidaAtual;
 
         [Header("Ataque Refrigerante")] public GameObject refrigerante;
@@ -34,7 +34,7 @@ namespace Enemies.Batata_Boss
 
         private void Start()
         {
-            _justAttacked = false;
+            _justAttacked = true;
             Ataque2();
             _atacaCimaCounter = 0;
             _vidaAtual = vidaBatata;
@@ -92,7 +92,8 @@ namespace Enemies.Batata_Boss
                         Ataque2();
                         break;
                     case 2:
-                        Ataque3();
+                        if(_vidaAtual<40)
+                            Ataque3();
                         break;
                 }
             }
@@ -145,7 +146,7 @@ namespace Enemies.Batata_Boss
         private void Ataque2() // em cima
         {
             _isAttacking = true;
-            var repeatRate = Random.Range(.6f, .8f);
+            var repeatRate = 1f;
             _atacaCimaAmount = Random.Range(2, 7);
             InvokeRepeating(nameof(AtacaCima), 0f, repeatRate);
         }
@@ -154,7 +155,7 @@ namespace Enemies.Batata_Boss
         {
             _isAttacking = true;
             _atacaCimaAmount = Random.Range(8, 16);
-            var repeatRate = Random.Range(.6f, 1.2f);
+            var repeatRate = 1f;
             toggleRefri = true;
             InvokeRepeating(nameof(AtacaCima), 0f, repeatRate);
         }
@@ -162,6 +163,7 @@ namespace Enemies.Batata_Boss
         private void VenceuOBoss()
         {
             //trigger anim
+            CancelInvoke(); 
             //remove barrier
             rightBarrier.gameObject.SetActive(false);
             //deactivate box
@@ -195,11 +197,15 @@ namespace Enemies.Batata_Boss
                 Vector3.MoveTowards(refrigerante.transform.position, refriDownPosition, 0.1f);
         }
 
-        private void OnCollisionEnter2D(Collision2D col)
+        //private void OnCollisionEnter2D(Collision2D col)
+        //{
+          //  if (col.gameObject.layer != 11)
+          //      return;
+        //}
+
+        public override void TakeDamage(int amount)
         {
-            if (col.gameObject.layer != 11)
-                return;
-            _vidaAtual -= 1;
+            _vidaAtual -= amount;
         }
     }
 }

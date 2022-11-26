@@ -1,5 +1,6 @@
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace UI
 {
@@ -13,10 +14,10 @@ namespace UI
 
         public void Respawn()
         {
-            if (_playerHealth.IsDead())
-            {
-                _playerHealth.Spawn();
-            }
+            if (!_playerHealth.IsDead()) return;
+            if (SceneManager.GetActiveScene().name == "Boss")
+                SceneManager.LoadScene("Boss");
+            _playerHealth.Spawn();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Player
 {
     public class Bullet : MonoBehaviour
     {
-        public int bulletDamage;
+        public int bulletDamage=1;
         public List<Sprite> sprites;
         private void Start()
         {
@@ -18,12 +18,7 @@ namespace Player
         {
             if (collider.gameObject.TryGetComponent(out Enemy enemy))
                 enemy.TakeDamage(bulletDamage);
-            // if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("Ignore"))
-            // {
-            //     //arrumar isso
-            //     Physics2D.IgnoreCollision(collider, gameObject.GetComponent<BoxCollider2D>());
-            //     return;
-            // }
+          
             Destroy(gameObject);
         }
 
