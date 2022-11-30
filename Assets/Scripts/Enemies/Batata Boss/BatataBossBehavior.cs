@@ -21,6 +21,7 @@ namespace Enemies.Batata_Boss
         public GameObject ondaDeBatataObject;
         public bool ataque1 = false;
         private int _atacaBaixoCounter = 0;
+        private int _atacaBaixoAmount;
 
         [Header("Ataque Cima")] public Transform pontoAtaqueCima;
         public GameObject batataAfiadaObject;
@@ -37,6 +38,7 @@ namespace Enemies.Batata_Boss
             _justAttacked = true;
             Ataque2();
             _atacaCimaCounter = 0;
+            _atacaBaixoCounter = 0;
             _vidaAtual = vidaBatata;
         }
 
@@ -56,7 +58,7 @@ namespace Enemies.Batata_Boss
 
         private void ManageCurrentAttack()
         {
-            if (_atacaBaixoCounter >= 3)
+            if (_atacaBaixoCounter >= _atacaBaixoAmount)
             {
                 CancelInvoke(nameof(AtacaBaixo));
                 _atacaBaixoCounter = 0;
@@ -76,13 +78,15 @@ namespace Enemies.Batata_Boss
 
         private void ManageNextAttack()
         {
-            var nextAttackId = Random.Range(0, 3);
+            
             if (_justAttacked)
             {
                 WaitForNextAttack();
             }
             else
             {
+                var nextAttackId = Random.Range(0, 3);
+                Debug.Log(nextAttackId);
                 switch (nextAttackId)
                 {
                     case 0:
@@ -137,9 +141,10 @@ namespace Enemies.Batata_Boss
 
         private void Ataque1() // em baixo
         {
+            Debug.Log("AAAAAAAAAAAAAAA");
             _isAttacking = true;
             var repeatRate = Random.Range(.7f, 1f);
-
+            _atacaBaixoAmount = Random.Range(5, 11);
             InvokeRepeating(nameof(AtacaBaixo), 0f, repeatRate);
         }
 
@@ -199,8 +204,8 @@ namespace Enemies.Batata_Boss
 
         //private void OnCollisionEnter2D(Collision2D col)
         //{
-          //  if (col.gameObject.layer != 11)
-          //      return;
+        //  if (col.gameObject.layer != 11)
+        //      return;
         //}
 
         public override void TakeDamage(int amount)
