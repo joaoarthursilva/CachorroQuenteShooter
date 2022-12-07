@@ -304,6 +304,7 @@ GameObject:
   - component: {fileID: 7240571482641848316}
   - component: {fileID: 951322248}
   - component: {fileID: 951322249}
+  - component: {fileID: 873040756700061318}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -374,6 +375,10 @@ MonoBehaviour:
   startingHealth: 6
   startingSpawnPoint: {fileID: 0}
   youDiedScreen: {fileID: 0}
+  totalLives: 0
+  livesText: {fileID: 0}
+  youDiedText: {fileID: 0}
+  respawnText: {fileID: 0}
 --- !u!70 &5611741405721578656
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -594,6 +599,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &873040756700061318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3964764421356496351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be1550692de40ed4d9390b7c18a00c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3964764421367322456
 GameObject:
   m_ObjectHideFlags: 0

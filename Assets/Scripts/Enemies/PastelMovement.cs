@@ -7,6 +7,11 @@ namespace Enemies
     {
         private Rigidbody2D _rb;
 
+        [Header("Sprite Variables")] [SerializeField]
+        private Sprite sleepingSprite;
+
+        [SerializeField] private Sprite awakeSprite;
+
         [Header("Movement Variables")] [SerializeField]
         private float maxMoveSpeed = 11f;
 
@@ -31,6 +36,7 @@ namespace Enemies
 
         private void Start()
         {
+            gameObject.GetComponent<SpriteRenderer>().sprite = sleepingSprite;
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _currentHealth = startingHealth;
             _hasBeenSeenByPlayer = false;
@@ -54,12 +60,9 @@ namespace Enemies
         private void Update()
         {
             _position = gameObject.transform.position;
-            if (Physics2D.Raycast(_position, Vector2.left, raycastLength, playerLayer) ||
-                Physics2D.Raycast(_position, Vector2.right, raycastLength, playerLayer))
-            {
-                // trigger animation here
-                _hasSeenPlayer = true;
-            }
+            if (!Physics2D.Raycast(_position, Vector2.left, raycastLength, playerLayer) || _hasSeenPlayer) return;
+            gameObject.GetComponent<SpriteRenderer>().sprite = awakeSprite;
+            _hasSeenPlayer = true;
         }
 
         private void OnCollisionStay2D(Collision2D col)
@@ -98,7 +101,6 @@ namespace Enemies
             Gizmos.color = Color.cyan;
             _position = gameObject.transform.position;
             Gizmos.DrawLine(_position, _position + Vector3.left * raycastLength);
-            Gizmos.DrawLine(_position, _position + Vector3.right * raycastLength);
         }
     }
 }

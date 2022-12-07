@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,7 +8,7 @@ namespace Player
     {
         [SerializeField] private Transform gunPivot;
         [SerializeField] private Transform firePoint;
-        public Camera cam;
+        private Camera _cam;
         private Vector2 _mousePos;
         public GameObject bulletPrefab;
         private GameObject _bullet;
@@ -15,11 +16,12 @@ namespace Player
         private Rigidbody2D _rb;
         public float fireRate = 0.5F;
         private float _nextFire = 0.0F;
-        
 
         private void Update()
         {
-            _mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            _cam = GameObject.FindWithTag("MainCamera").GetComponent<Camera>();
+
+            _mousePos = _cam.ScreenToWorldPoint(Input.mousePosition);
         }
 
         private void Shoot()

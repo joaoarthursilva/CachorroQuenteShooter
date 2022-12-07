@@ -1,4 +1,6 @@
 using System;
+using Managers;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,21 +10,44 @@ namespace Player
     {
         [SerializeField] private int startingHealth = 6;
         private int _currentHealth;
-        public Transform startingSpawnPoint;
+        [SerializeField] private Transform startingSpawnPoint;
         private Vector3 _currentSpawnPoint;
-        public Canvas youDiedScreen;
-
+        [SerializeField] private Canvas youDiedScreen;
+        [SerializeField] private int totalLives;
         private bool _isDead;
+
+        [SerializeField] private TextMeshProUGUI livesText;
+        [SerializeField] private TextMeshProUGUI youDiedText;
+        [SerializeField] private TextMeshProUGUI respawnText;
+        private PlayerLivesManager _playerLivesManager;
+        private bool _runUpdateRespawnOnce = false;
+
+        private void Start()
+        {
+            _runUpdateRespawnOnce = false;
+            totalLives = 3;
+            _currentSpawnPoint = startingSpawnPoint.position;
+            _playerLivesManager = GameObject.FindWithTag("PlayerLivesManager").GetComponent<PlayerLivesManager>();
+            if (_playerLivesManager.GetPlayerLives() == 0)
+                _playerLivesManager.SetCurrentPlayerLives(totalLives);
+            Spawn();
+        }
+
+        private void Update()
+        {
+            if (SceneManager.GetActiveScene().name == "Boss" && !_runUpdateRespawnOnce)
+            {
+                _currentSpawnPoint = new Vector3(0, 0, 0);
+                _runUpdateRespawnOnce = true;
+                Spawn();
+            }
+
+            livesText.text = "x" + _playerLivesManager.GetPlayerLives();
+        }
 
         public void SetSpawnPoint(Transform spawnpoint)
         {
             _currentSpawnPoint = spawnpoint.position;
-        }
-
-        private void Start()
-        {
-            _currentSpawnPoint = startingSpawnPoint.position;
-            Spawn();
         }
 
         public void TakeDamage(int amount)
@@ -30,6 +55,7 @@ namespace Player
             _currentHealth -= amount;
             if (_currentHealth <= 0)
             {
+                _playerLivesManager.DecreasePlayerLives();
                 Die();
             }
         }
@@ -47,9 +73,12 @@ namespace Player
 
         private void Die()
         {
-            youDiedScreen.gameObject.SetActive(true);
             _isDead = true;
+            youDiedScreen.gameObject.SetActive(true);
             Time.timeScale = 0;
+            youDiedText.text = _playerLivesManager.GetPlayerLives() <= 0 ? "Game Over" : "You Died";
+            respawnText.text =
+                _playerLivesManager.GetPlayerLives() <= 0 ? "Click anywhere to restart" : "Click anywhere to respawn";
         }
 
         public bool IsDead()

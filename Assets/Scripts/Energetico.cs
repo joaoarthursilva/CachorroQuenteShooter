@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class Energetico : MonoBehaviour
 {
-    public int regenAmount;
+    [SerializeField] private int regenAmount;
     private PlayerHealth _playerHealth;
+
     private void Start()
     {
         _playerHealth = GameObject.FindWithTag("Player").GetComponent<PlayerHealth>();

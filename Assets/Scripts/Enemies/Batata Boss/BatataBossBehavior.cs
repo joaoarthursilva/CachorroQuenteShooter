@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace Enemies.Batata_Boss
 {
@@ -10,6 +13,9 @@ namespace Enemies.Batata_Boss
 
         [Header("Vida")] public int vidaBatata = 150;
         private int _vidaAtual;
+        [SerializeField] private int vidaParaFaseDois = 60;
+        [SerializeField] private Image vidaImg;
+        [SerializeField] private Canvas enemyCanvas;
 
         [Header("Ataque Refrigerante")] public GameObject refrigerante;
         public Vector3 refriUpPosition;
@@ -21,24 +27,25 @@ namespace Enemies.Batata_Boss
         public GameObject ondaDeBatataObject;
         public bool ataque1 = false;
         private int _atacaBaixoCounter = 0;
-        private int _atacaBaixoAmount;
 
         [Header("Ataque Cima")] public Transform pontoAtaqueCima;
         public GameObject batataAfiadaObject;
         public bool ataque2 = false;
         private int _atacaCimaCounter;
         private int _atacaCimaAmount;
-        
+
         [Header("Ataques em geral")] private bool _isAttacking;
         private bool _justAttacked;
-        public float attackDelay; 
+        private float _attackDelay;
+        [SerializeField] private float startingAttackDelay;
+        [SerializeField] private float secondAttackDelay;
 
         private void Start()
         {
+            _attackDelay = startingAttackDelay;
             _justAttacked = true;
             Ataque2();
             _atacaCimaCounter = 0;
-            _atacaBaixoCounter = 0;
             _vidaAtual = vidaBatata;
         }
 
@@ -46,19 +53,33 @@ namespace Enemies.Batata_Boss
         {
             ManageBossHealth();
             ManageCurrentAttack();
-            ManageManualAttacks(); // for development only
-            if (!_isAttacking) ManageNextAttack();
+
+            if (!_isAttacking)
+                ManageNextAttack();
+            if (toggleRefri) LevantaRefrigerante();
+            else AbaixaRefrigerante();
         }
 
         private void ManageBossHealth()
         {
+            if (_vidaAtual <= vidaParaFaseDois)
+            {
+                _attackDelay = secondAttackDelay;
+                vidaImg.color = Color.red;
+            }
+
             if (_vidaAtual <= 0)
                 VenceuOBoss();
         }
 
+        private void Update()
+        {
+            vidaImg.fillAmount = (float) _vidaAtual / vidaBatata;
+        }
+
         private void ManageCurrentAttack()
         {
-            if (_atacaBaixoCounter >= _atacaBaixoAmount)
+            if (_atacaBaixoCounter >= 3)
             {
                 CancelInvoke(nameof(AtacaBaixo));
                 _atacaBaixoCounter = 0;
@@ -78,15 +99,13 @@ namespace Enemies.Batata_Boss
 
         private void ManageNextAttack()
         {
-            
+            var nextAttackId = Random.Range(0, 3);
             if (_justAttacked)
             {
                 WaitForNextAttack();
             }
             else
             {
-                var nextAttackId = Random.Range(0, 3);
-                Debug.Log(nextAttackId);
                 switch (nextAttackId)
                 {
                     case 0:
@@ -96,7 +115,7 @@ namespace Enemies.Batata_Boss
                         Ataque2();
                         break;
                     case 2:
-                        if(_vidaAtual<40)
+                        if (_vidaAtual < 40)
                             Ataque3();
                         break;
                 }
@@ -106,7 +125,7 @@ namespace Enemies.Batata_Boss
         private void WaitForNextAttack()
         {
             _isAttacking = true;
-            Invoke(nameof(BackToNextAttack), attackDelay);
+            Invoke(nameof(BackToNextAttack), _attackDelay);
         }
 
         private void BackToNextAttack()
@@ -134,17 +153,13 @@ namespace Enemies.Batata_Boss
                 Ataque3();
                 ataque3 = false;
             }
-
-            if (toggleRefri) LevantaRefrigerante();
-            else AbaixaRefrigerante();
         }
 
         private void Ataque1() // em baixo
         {
-            Debug.Log("AAAAAAAAAAAAAAA");
             _isAttacking = true;
             var repeatRate = Random.Range(.7f, 1f);
-            _atacaBaixoAmount = Random.Range(5, 11);
+
             InvokeRepeating(nameof(AtacaBaixo), 0f, repeatRate);
         }
 
@@ -168,9 +183,10 @@ namespace Enemies.Batata_Boss
         private void VenceuOBoss()
         {
             //trigger anim
-            CancelInvoke(); 
+            CancelInvoke();
             //remove barrier
             rightBarrier.gameObject.SetActive(false);
+            enemyCanvas.gameObject.SetActive(false);
             //deactivate box
             gameObject.SetActive(false);
         }
@@ -201,12 +217,6 @@ namespace Enemies.Batata_Boss
             refrigerante.transform.position =
                 Vector3.MoveTowards(refrigerante.transform.position, refriDownPosition, 0.1f);
         }
-
-        //private void OnCollisionEnter2D(Collision2D col)
-        //{
-        //  if (col.gameObject.layer != 11)
-        //      return;
-        //}
 
         public override void TakeDamage(int amount)
         {
