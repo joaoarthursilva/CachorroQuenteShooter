@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -11,9 +12,11 @@ namespace Enemies.Batata_Boss
 
         // [Header("Animaçoes")] [SerializeField] private Animator anim;
 
-        [Header("Vida")] public int vidaBatata = 150;
+        [Header("Vida")] public int vidaBatata = 250;
         private int _vidaAtual;
-        [SerializeField] private int vidaParaFaseDois = 60;
+        [SerializeField] private int vidaParaFaseDois = 150;
+        [SerializeField] private int vidaParaFaseTres = 100;
+        [SerializeField] private int vidaParaFaseQuatro = 50;
         [SerializeField] private Image vidaImg;
         [SerializeField] private Canvas enemyCanvas;
 
@@ -21,16 +24,15 @@ namespace Enemies.Batata_Boss
         public Vector3 refriUpPosition;
         public Vector3 refriDownPosition;
         public float refriMoveSpeed = 3f;
-        public bool toggleRefri = false;
-        public bool ataque3 = false;
+        private bool _toggleRefri = false;
+        [SerializeField] private int lifeAmountToAtaqueRefri;
+
         [Header("Ataque Baixo")] public Transform pontoAtaqueBaixo;
         public GameObject ondaDeBatataObject;
-        public bool ataque1 = false;
         private int _atacaBaixoCounter = 0;
 
         [Header("Ataque Cima")] public Transform pontoAtaqueCima;
         public GameObject batataAfiadaObject;
-        public bool ataque2 = false;
         private int _atacaCimaCounter;
         private int _atacaCimaAmount;
 
@@ -39,6 +41,8 @@ namespace Enemies.Batata_Boss
         private float _attackDelay;
         [SerializeField] private float startingAttackDelay;
         [SerializeField] private float secondAttackDelay;
+        [SerializeField] private float thirdAttackDelay;
+
 
         private void Start()
         {
@@ -47,6 +51,7 @@ namespace Enemies.Batata_Boss
             Ataque2();
             _atacaCimaCounter = 0;
             _vidaAtual = vidaBatata;
+            vidaImg.color = Color.cyan;
         }
 
         private void FixedUpdate()
@@ -56,7 +61,7 @@ namespace Enemies.Batata_Boss
 
             if (!_isAttacking)
                 ManageNextAttack();
-            if (toggleRefri) LevantaRefrigerante();
+            if (_toggleRefri) LevantaRefrigerante();
             else AbaixaRefrigerante();
         }
 
@@ -65,6 +70,18 @@ namespace Enemies.Batata_Boss
             if (_vidaAtual <= vidaParaFaseDois)
             {
                 _attackDelay = secondAttackDelay;
+                vidaImg.color = Color.yellow;
+            }
+
+            if (_vidaAtual <= vidaParaFaseTres)
+            {
+                _attackDelay = thirdAttackDelay;
+                vidaImg.color = Color.magenta;
+            }
+
+            if (_vidaAtual <= vidaParaFaseQuatro)
+            {
+                _attackDelay = .25f;
                 vidaImg.color = Color.red;
             }
 
@@ -74,7 +91,7 @@ namespace Enemies.Batata_Boss
 
         private void Update()
         {
-            vidaImg.fillAmount = (float) _vidaAtual / vidaBatata;
+            vidaImg.fillAmount = (float)_vidaAtual / vidaBatata;
         }
 
         private void ManageCurrentAttack()
@@ -91,7 +108,7 @@ namespace Enemies.Batata_Boss
             {
                 CancelInvoke(nameof(AtacaCima));
                 _atacaCimaCounter = 0;
-                toggleRefri = false;
+                _toggleRefri = false;
                 _isAttacking = false;
                 _justAttacked = true;
             }
@@ -99,13 +116,13 @@ namespace Enemies.Batata_Boss
 
         private void ManageNextAttack()
         {
-            var nextAttackId = Random.Range(0, 3);
             if (_justAttacked)
             {
                 WaitForNextAttack();
             }
             else
             {
+                var nextAttackId = Random.Range(0, 3);
                 switch (nextAttackId)
                 {
                     case 0:
@@ -115,7 +132,7 @@ namespace Enemies.Batata_Boss
                         Ataque2();
                         break;
                     case 2:
-                        if (_vidaAtual < 40)
+                        if (_vidaAtual <= vidaParaFaseTres)
                             Ataque3();
                         break;
                 }
@@ -132,27 +149,6 @@ namespace Enemies.Batata_Boss
         {
             _isAttacking = false;
             _justAttacked = false;
-        }
-
-        private void ManageManualAttacks()
-        {
-            if (ataque2)
-            {
-                Ataque2();
-                ataque2 = false;
-            }
-
-            if (ataque1)
-            {
-                Ataque1();
-                ataque1 = false;
-            }
-
-            if (ataque3)
-            {
-                Ataque3();
-                ataque3 = false;
-            }
         }
 
         private void Ataque1() // em baixo
@@ -176,7 +172,7 @@ namespace Enemies.Batata_Boss
             _isAttacking = true;
             _atacaCimaAmount = Random.Range(8, 16);
             var repeatRate = 1f;
-            toggleRefri = true;
+            _toggleRefri = true;
             InvokeRepeating(nameof(AtacaCima), 0f, repeatRate);
         }
 
@@ -184,6 +180,7 @@ namespace Enemies.Batata_Boss
         {
             //trigger anim
             CancelInvoke();
+            _toggleRefri = false;
             //remove barrier
             rightBarrier.gameObject.SetActive(false);
             enemyCanvas.gameObject.SetActive(false);
@@ -193,7 +190,7 @@ namespace Enemies.Batata_Boss
 
         private void AtacaBaixo()
         {
-            if (!toggleRefri)
+            if (!_toggleRefri)
                 Instantiate(ondaDeBatataObject, pontoAtaqueBaixo.position, Quaternion.identity);
             _atacaBaixoCounter++;
         }

@@ -35,7 +35,7 @@ namespace UI
                     break;
                 case "SampleScene" when lives <= 0:
                     ReverseDontDestroy();
-                    sceneName = currentScene;
+                    sceneName = "MainMenu";
                     break;
                 case "Boss" when lives > 0:
                     SceneManager.LoadScene(currentScene);
@@ -76,9 +76,6 @@ namespace UI
                     rootGameObjects.Add(root.gameObject);
                 }
             }
-
-            //foreach( GameObject obj in result )
-            //    Debug.Log( obj );
 
             return rootGameObjects.Where(t => !rootGameObjectsExceptDontDestroyOnLoad.Contains(t)).ToList();
         }

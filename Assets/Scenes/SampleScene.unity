@@ -9266,7 +9266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322756630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.7569463, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14302,7 +14302,6 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14470,33 +14469,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 936c1d62ca19b7246ae3c7ab5e025c9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shader: {fileID: 4800000, guid: 286b7c6cdd96d1b488f3468cc71ba2b8, type: 3}
-  bend: 50
-  scanlineSize1: 518.26
-  scanlineSpeed1: -10
-  scanlineSize2: 44.9
-  scanlineSpeed2: 4.7
-  scanlineAmount: 0.05
-  vignetteSize: 1.83
-  vignetteSmoothness: 0.55
-  vignetteEdgeRound: 6.95
-  noiseSize: 180.2
-  noiseAmount: 0.04
-  redOffset: {x: 0, y: 0}
-  blueOffset: {x: 0, y: 0}
-  greenOffset: {x: 0, y: 0}
 --- !u!1 &524172891
 GameObject:
   m_ObjectHideFlags: 0
