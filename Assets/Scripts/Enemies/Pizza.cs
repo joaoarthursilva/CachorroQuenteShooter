@@ -28,6 +28,8 @@ namespace Enemies
 
         private void Update()
         {
+            if (_target.gameObject.GetComponent<PlayerHealth>().IsDead())
+                _hasBeenRendered = false;
             if (CanFire()) Fire();
         }
 
@@ -65,6 +67,7 @@ namespace Enemies
 
         public override void TakeDamage(int amount)
         {
+            gameObject.GetComponent<EnemyDamageFlash>().DamageFlash();
             _currentHealth -= amount;
             if (_currentHealth <= 0)
                 Destroy(gameObject);

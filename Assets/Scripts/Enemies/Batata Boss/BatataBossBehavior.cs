@@ -1,5 +1,8 @@
 using System;
+using Managers;
+using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -12,11 +15,12 @@ namespace Enemies.Batata_Boss
 
         // [Header("Animaçoes")] [SerializeField] private Animator anim;
 
-        [Header("Vida")] public int vidaBatata = 250;
+        [Header("Vida")] public int vidaBatata = 500;
         private int _vidaAtual;
-        [SerializeField] private int vidaParaFaseDois = 150;
-        [SerializeField] private int vidaParaFaseTres = 100;
-        [SerializeField] private int vidaParaFaseQuatro = 50;
+        [SerializeField] private int vidaParaFaseDois = 450;
+        [SerializeField] private int vidaParaFaseTres = 300;
+        [SerializeField] private int vidaParaFaseQuatro = 100;
+        [SerializeField] private int vidaParaFaseCinco = 50;
         [SerializeField] private Image vidaImg;
         [SerializeField] private Canvas enemyCanvas;
 
@@ -67,23 +71,27 @@ namespace Enemies.Batata_Boss
 
         private void ManageBossHealth()
         {
-            if (_vidaAtual <= vidaParaFaseDois)
+            if (_vidaAtual <= vidaParaFaseCinco)
+            {
+                _attackDelay = .1f;
+                vidaImg.color = Color.red;
+            }
+            else if (_vidaAtual <= vidaParaFaseQuatro)
+            {
+                _attackDelay = .25f;
+                vidaImg.color = Color.red;
+            }
+            else if (_vidaAtual <= vidaParaFaseTres)
+            {
+                _attackDelay = thirdAttackDelay;
+                vidaImg.color = Color.magenta;
+            }
+            else if (_vidaAtual <= vidaParaFaseDois)
             {
                 _attackDelay = secondAttackDelay;
                 vidaImg.color = Color.yellow;
             }
 
-            if (_vidaAtual <= vidaParaFaseTres)
-            {
-                _attackDelay = thirdAttackDelay;
-                vidaImg.color = Color.magenta;
-            }
-
-            if (_vidaAtual <= vidaParaFaseQuatro)
-            {
-                _attackDelay = .25f;
-                vidaImg.color = Color.red;
-            }
 
             if (_vidaAtual <= 0)
                 VenceuOBoss();
@@ -91,7 +99,7 @@ namespace Enemies.Batata_Boss
 
         private void Update()
         {
-            vidaImg.fillAmount = (float)_vidaAtual / vidaBatata;
+            vidaImg.fillAmount = (float) _vidaAtual / vidaBatata;
         }
 
         private void ManageCurrentAttack()
@@ -178,14 +186,23 @@ namespace Enemies.Batata_Boss
 
         private void VenceuOBoss()
         {
-            //trigger anim
-            CancelInvoke();
-            _toggleRefri = false;
-            //remove barrier
-            rightBarrier.gameObject.SetActive(false);
-            enemyCanvas.gameObject.SetActive(false);
-            //deactivate box
             gameObject.SetActive(false);
+            Invoke(nameof(VaiPraCreditos), .6f);
+
+            // //trigger anim
+            // CancelInvoke();
+            // _toggleRefri = false;
+            // AbaixaRefrigerante();
+            // //remove barrier
+            // rightBarrier.gameObject.SetActive(false);
+            // enemyCanvas.gameObject.SetActive(false);
+            // //deactivate box
+        }
+
+        private void VaiPraCreditos()
+        {
+            DiedScreen.ReverseDontDestroy();
+            SceneManager.LoadScene("Creditos");
         }
 
         private void AtacaBaixo()
@@ -217,6 +234,7 @@ namespace Enemies.Batata_Boss
 
         public override void TakeDamage(int amount)
         {
+            gameObject.GetComponent<EnemyDamageFlash>().DamageFlash();
             _vidaAtual -= amount;
         }
     }

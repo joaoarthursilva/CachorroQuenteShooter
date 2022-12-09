@@ -29,6 +29,7 @@ namespace Enemies
 
         private void Start()
         {
+            _target = GameObject.FindWithTag("Player").transform;
             _currentHealth = startingHealth;
             _transform = gameObject.GetComponent<Transform>();
             _canMove = false;

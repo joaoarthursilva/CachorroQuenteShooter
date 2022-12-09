@@ -52,6 +52,7 @@ namespace Enemies
 
         public override void TakeDamage(int amount)
         {
+            gameObject.GetComponent<EnemyDamageFlash>().DamageFlash();
             _currentHealth -= amount;
             if (_currentHealth <= 0)
                 Destroy(gameObject);

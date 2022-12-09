@@ -283,7 +283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunPivot: {fileID: 3964764421058919248}
   firePoint: {fileID: 3964764422136492737}
-  cam: {fileID: 0}
   bulletPrefab: {fileID: 6451795966673503679, guid: 3b0dccc2c622e8f47ad540700d2872f3, type: 3}
   bulletForce: 20
   fireRate: 0.17
@@ -424,7 +423,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3964764421356496351}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

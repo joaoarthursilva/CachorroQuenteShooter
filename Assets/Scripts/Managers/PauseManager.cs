@@ -1,3 +1,5 @@
+using Player;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +22,7 @@ namespace Managers
         {
             _isPaused = false;
             pauseMenu.SetActive(false);
+            if (GameObject.FindWithTag("Player").GetComponent<PlayerHealth>().IsDead()) return;
             Time.timeScale = 1;
         }
 
@@ -45,6 +48,7 @@ namespace Managers
 
         public void BackToMainMenu()
         {
+            DiedScreen.ReverseDontDestroy();
             SceneManager.LoadScene("MainMenu");
         }
 

@@ -50,7 +50,7 @@ namespace UI
             _playerHealth.Spawn();
         }
 
-        private void ReverseDontDestroy()
+        public static void ReverseDontDestroy()
         {
             foreach (var go in GetDontDestroyOnLoadObjects())
             {

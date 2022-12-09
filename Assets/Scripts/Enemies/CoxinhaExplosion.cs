@@ -5,14 +5,16 @@ namespace Enemies
 {
     public class CoxinhaExplosion : MonoBehaviour
     {
-        public int explosionDamage = 1;
-        public float raioExplosao = 2.9f;
-        public float timeToExplosion = .7f;
+        // public int explosionDamage = 2;
+        [SerializeField] private Sprite explosionSprite;
+        [SerializeField] private GameObject coxinha;
+        [SerializeField] private float raioExplosao = 2.9f;
+
         private int _counter;
-        public GameObject coxinha;
 
         private void Start()
         {
+            coxinha.GetComponent<SpriteRenderer>().sprite = explosionSprite;
             gameObject.GetComponent<CircleCollider2D>().radius = raioExplosao;
             _counter = 0;
         }
@@ -20,23 +22,10 @@ namespace Enemies
         private void OnTriggerStay2D(Collider2D col)
         {
             if (_counter != 0) return;
-            if (timeToExplosion > 0) return;
 
-            if (col.gameObject.TryGetComponent(out PlayerHealth playerHealth))
-                playerHealth.TakeDamage(explosionDamage);
-            else if (col.gameObject.TryGetComponent(out Enemy enemy))
-                enemy.TakeDamage(explosionDamage);
+            if (!col.gameObject.TryGetComponent(out PlayerHealth playerHealth)) return;
+            playerHealth.TakeDamage(2);
             _counter++;
-        }
-
-        private void FixedUpdate()
-        {
-            if (timeToExplosion <= 0)
-            {
-                Destroy(coxinha, .1f);
-            }
-
-            timeToExplosion -= Time.fixedDeltaTime;
         }
     }
 }

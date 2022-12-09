@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 941023931294157565}
   - component: {fileID: 4649629904810194162}
   - component: {fileID: 1789374590140422143}
+  - component: {fileID: 3515134240657964223}
   m_Layer: 9
   m_Name: Pastel
   m_TagString: Untagged
@@ -144,7 +145,7 @@ MonoBehaviour:
   awakeSprite: {fileID: 21300000, guid: bebc55b40d85c30488f3c8141cc57aa6, type: 3}
   maxMoveSpeed: 11
   movementAcceleration: 55
-  startingHealth: 9
+  startingHealth: 6
   enemyDamage: 1
   playerLayer:
     serializedVersion: 2
@@ -255,3 +256,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.0725441, y: 0.052735567}
   m_EdgeRadius: 0
+--- !u!114 &3515134240657964223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7668442349822858719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 193524564e39eb94f93a687cee9cd163, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 7668442349822858716}
+  flashTime: 0.01
