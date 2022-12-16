@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Enemies
@@ -19,7 +20,6 @@ namespace Enemies
 
         [Header("Attack Variables")] [SerializeField]
         private GameObject explosaoCoxinha;
-
 
         [Header("Animation Variables")] [SerializeField]
         private Animator coxinhaAnimator;
@@ -78,6 +78,7 @@ namespace Enemies
 
         private void Sprite1()
         {
+            FindObjectOfType<AudioManager>().Play("CoxinhaRisada");
             _spriteRenderer.sprite = sprite1;
             Invoke(nameof(Sprite2), .2f);
         }

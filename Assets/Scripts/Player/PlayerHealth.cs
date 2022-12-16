@@ -52,6 +52,7 @@ namespace Player
 
         public void TakeDamage(int amount)
         {
+            FindObjectOfType<AudioManager>().Play("PlayerDamage");
             _currentHealth -= amount;
             if (_currentHealth <= 0)
             {

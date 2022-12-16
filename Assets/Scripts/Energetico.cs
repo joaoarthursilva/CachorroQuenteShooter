@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using Player;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class Energetico : MonoBehaviour
     {
         if (!col.gameObject.CompareTag("Player")) return;
         _playerHealth.RegenerateHealth(regenAmount);
+        
+        FindObjectOfType<AudioManager>().Play("Energetico");
         gameObject.SetActive(false);
     }
 }

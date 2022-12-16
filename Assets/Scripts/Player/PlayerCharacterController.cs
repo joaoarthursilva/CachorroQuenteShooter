@@ -1,3 +1,4 @@
+using Managers;
 using UnityEngine;
 
 namespace Player
@@ -85,6 +86,7 @@ namespace Player
 
         private void Jump()
         {
+            FindObjectOfType<AudioManager>().Play("PlayerJump");
             if (!_onGround) _extraJumpsValue--;
             _rb.velocity = new Vector2(_rb.velocity.x, 0f);
             _rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -93,18 +95,12 @@ namespace Player
 
         private void FallMultiplier()
         {
-            if (_rb.velocity.y < 0)
+            _rb.gravityScale = _rb.velocity.y switch
             {
-                _rb.gravityScale = fallMultiplier;
-            }
-            else if (_rb.velocity.y > 0 && !Input.GetButton("Jump"))
-            {
-                _rb.gravityScale = lowJumpFallMultiplier;
-            }
-            else
-            {
-                _rb.gravityScale = 1f;
-            }
+                < 0 => fallMultiplier,
+                > 0 when !Input.GetButton("Jump") => lowJumpFallMultiplier,
+                _ => 1f
+            };
         }
 
         private Vector2 GetInput()
@@ -163,16 +159,14 @@ namespace Player
 
             //flip
 
-         //  if (movementAcceleration < 0)
-         //   {
-        //       Sprite.flipX = true;
-        //    }
-        //     else if (movementAcceleration < 0)
-         //   {
-        //         Sprite.flipX = false;
-        //   }
-
-            
+            //  if (movementAcceleration < 0)
+            //   {
+            //       Sprite.flipX = true;
+            //    }
+            //     else if (movementAcceleration < 0)
+            //   {
+            //         Sprite.flipX = false;
+            //   }
         }
     }
 }

@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
 namespace UI
 {
     public class SettingsMenu : MonoBehaviour
     {
-        public AudioMixer audioMixer;
+        [SerializeField] private AudioMixer audioMixer;
+
+        // [SerializeField] private AudioMixer musicAudioMixer;
         public TMP_Dropdown resolutionDropdown;
         private Resolution[] _resolutions;
         private int _targetFramerate;
@@ -17,7 +20,7 @@ namespace UI
         private void Start()
         {
             _resolutions = Screen.resolutions;
-        
+
             resolutionDropdown.ClearOptions();
 
             var options = new List<string>();
@@ -53,9 +56,14 @@ namespace UI
             // if (Application.targetFrameRate != _targetFramerate) Application.targetFrameRate = _targetFramerate;
         }
 
-        public void SetVolume(float volume)
+        public void SetSfxVolume(float volume)
         {
-            audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
+            audioMixer.SetFloat("SFXVolume", volume);
+        }
+
+        public void SetMusicVolume(float volume)
+        {
+            audioMixer.SetFloat("MusicVolume", volume);
         }
 
         public void SetQuality(int qualityIndex)
@@ -76,7 +84,8 @@ namespace UI
 
         public void CloseSettings()
         {
-            mainMenu.SetActive(true);
+            if (mainMenu != null)
+                mainMenu.SetActive(true);
             settingsMenu.SetActive(false);
         }
     }

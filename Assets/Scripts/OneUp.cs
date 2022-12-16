@@ -14,6 +14,7 @@ public class OneUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (!col.gameObject.CompareTag("Player")) return;
+        FindObjectOfType<AudioManager>().Play("OneUp");
         _playerLivesManager.IncreasePlayerLives();
         gameObject.SetActive(false);
     }

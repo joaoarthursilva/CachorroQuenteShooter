@@ -17,6 +17,7 @@ namespace Enemies
             _moveDirection = (_target.transform.position - transform.position).normalized * moveSpeed;
             _rb.AddForce(new Vector2(_moveDirection.x, _moveDirection.y), ForceMode2D.Impulse);
             // _rb.velocity = new Vector2(_moveDirection.x, _moveDirection.y);
+            Destroy(gameObject, 4f);
         }
 
         private void OnCollisionEnter2D(Collision2D col)

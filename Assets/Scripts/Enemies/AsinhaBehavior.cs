@@ -14,8 +14,10 @@ namespace Enemies
         private int _currentWaypoint;
         private Seeker _seeker;
         private Rigidbody2D _rb;
+
         public float repeatRate = .5f;
-        private Transform _transform;
+
+        // private Transform _transform;
         private bool _canMove;
 
         public int startingHealth = 10;
@@ -31,7 +33,7 @@ namespace Enemies
         {
             _target = GameObject.FindWithTag("Player").transform;
             _currentHealth = startingHealth;
-            _transform = gameObject.GetComponent<Transform>();
+            // _transform = gameObject.GetComponent<Transform>();
             _canMove = false;
             _seeker = GetComponent<Seeker>();
             _rb = GetComponent<Rigidbody2D>();
@@ -90,10 +92,10 @@ namespace Enemies
             _canMove = true;
         }
 
-        private void Update()
-        {
-            gameObject.GetComponent<SpriteRenderer>().flipX = !(_target.position.x > _transform.position.x);
-        }
+        // private void Update()
+        // {
+        // gameObject.GetComponent<SpriteRenderer>().flipX = !(_target.position.x > _transform.position.x);
+        // }
 
         private void FixedUpdate()
         {

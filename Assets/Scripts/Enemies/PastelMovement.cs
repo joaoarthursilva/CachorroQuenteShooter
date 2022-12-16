@@ -1,3 +1,4 @@
+using Managers;
 using Player;
 using UnityEngine;
 
@@ -32,10 +33,13 @@ namespace Enemies
         [Header("Attack Variables")] [SerializeField]
         private float timeDamageDelay = .5f;
 
+        private bool _screamOnce;
+
         private float _timeDamageDelayCounter;
 
         private void Start()
         {
+            _screamOnce = false;
             gameObject.GetComponent<SpriteRenderer>().sprite = sleepingSprite;
             _rb = gameObject.GetComponent<Rigidbody2D>();
             _currentHealth = startingHealth;
@@ -63,6 +67,12 @@ namespace Enemies
             _position = gameObject.transform.position;
             if (!Physics2D.Raycast(_position, Vector2.left, raycastLength, playerLayer) || _hasSeenPlayer) return;
             gameObject.GetComponent<SpriteRenderer>().sprite = awakeSprite;
+            if (!_screamOnce)
+            {
+                FindObjectOfType<AudioManager>().Play("PastelAttack");
+                _screamOnce = true;
+            }
+
             _hasSeenPlayer = true;
         }
 

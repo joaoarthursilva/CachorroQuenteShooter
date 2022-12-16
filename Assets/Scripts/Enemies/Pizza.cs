@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 
@@ -36,6 +37,11 @@ namespace Enemies
         private void OnBecameVisible()
         {
             _hasBeenRendered = true;
+        }
+
+        private void OnBecameInvisible()
+        {
+            _hasBeenRendered = false;
         }
 
         private bool CanFire()

@@ -180,12 +180,14 @@ GameObject:
   - component: {fileID: 9085366899214764436}
   - component: {fileID: 9085366899214764441}
   - component: {fileID: 9085366899214764438}
+  - component: {fileID: 320613553484425317}
   - component: {fileID: 6346910871033004664}
   - component: {fileID: 634886989}
   - component: {fileID: 2035716455537779042}
   - component: {fileID: 9115711630041985165}
   - component: {fileID: 7904529652813834907}
   - component: {fileID: 6670682789890861427}
+  - component: {fileID: 179647927435879997}
   m_Layer: 9
   m_Name: Coxinha
   m_TagString: Untagged
@@ -244,8 +246,24 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.084098816, y: -0.3313434}
-  m_Size: {x: 1.1125698, y: 1.4573755}
+  m_Offset: {x: 0.084098816, y: -0.42972386}
+  m_Size: {x: 1.1125698, y: 1.2606146}
+  m_Direction: 0
+--- !u!70 &320613553484425317
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085366899214764434}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07707161, y: 0.0682717}
+  m_Size: {x: 0.6581458, y: 0.6581458}
   m_Direction: 0
 --- !u!114 &6346910871033004664
 MonoBehaviour:
@@ -390,3 +408,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 634886989}
   flashTime: 0.01
+--- !u!70 &179647927435879997
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085366899214764434}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07707149, y: 0.4079185}
+  m_Size: {x: 0.2739936, y: 0.32084143}
+  m_Direction: 0

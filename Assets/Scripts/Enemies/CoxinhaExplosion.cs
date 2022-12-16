@@ -1,3 +1,4 @@
+using Managers;
 using Player;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Enemies
 
         private void Start()
         {
+            FindObjectOfType<AudioManager>().Play("CoxinhaExplosion");
             coxinha.GetComponent<SpriteRenderer>().sprite = explosionSprite;
             gameObject.GetComponent<CircleCollider2D>().radius = raioExplosao;
             _counter = 0;

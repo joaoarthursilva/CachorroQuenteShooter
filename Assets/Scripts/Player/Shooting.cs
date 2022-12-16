@@ -1,4 +1,5 @@
 using System;
+using Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -26,6 +27,7 @@ namespace Player
 
         private void Shoot()
         {
+            FindObjectOfType<AudioManager>().Play("TiroPlayer");
             _bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             _rb = _bullet.GetComponent<Rigidbody2D>();
             _rb.AddForce(firePoint.right * bulletForce, ForceMode2D.Impulse);

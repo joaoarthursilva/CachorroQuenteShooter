@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7195366612373171639}
   - component: {fileID: 7195366612373171636}
+  - component: {fileID: 4485024283178522674}
+  - component: {fileID: 9047512049285020550}
   m_Layer: 3
   m_Name: GeloSprite
   m_TagString: Untagged
@@ -84,6 +86,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &4485024283178522674
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195366612373171638}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02146941, y: 0.17893846}
+  m_Size: {x: 0.7378769, y: 0.7378769}
+  m_Direction: 0
+--- !u!61 &9047512049285020550
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195366612373171638}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 73726175132e0ab4190d9cff749d68dd, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.037451565, y: -0.04837486}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.04, y: 1.01}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.92509687, y: 0.84707314}
+  m_EdgeRadius: 0
 --- !u!1 &7195366613612959571
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +170,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7195366613612959571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 73726175132e0ab4190d9cff749d68dd, type: 2}
   m_IsTrigger: 0
@@ -174,5 +218,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToMelt: 2
+  geloSprite: {fileID: 7195366612373171638}
   canMove: 0
   moveSpeed: 0

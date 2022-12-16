@@ -22,5 +22,11 @@ namespace UI
             mainMenu.SetActive(false);
             settingsMenu.SetActive(true);
         }
+        
+        
+        public void OpenCredits()
+        {
+            SceneManager.LoadScene("Creditos");
+        }
     }
 }
